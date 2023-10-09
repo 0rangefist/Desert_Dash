@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=4 format=3 uid="uid://cy8q4vr35sft"]
 
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://cppeapphs54k8" path="res://scenes/section.tscn" id="1_ydwu8"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
 
-[node name="Node" type="Node"]
+[node name="World" type="Node"]
+script = ExtResource("1_snt1e")
 
 [node name="Player" parent="." instance=ExtResource("2_3wiuu")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1.37571, 2.78197)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1.37571, 15.379)
 
 [node name="Camera Rig" type="Node3D" parent="Player"]
-transform = Transform3D(1, 1.07348e-07, -1.38013e-07, 0, 0.789341, 0.613955, 1.74846e-07, -0.613955, 0.789341, -4.23549e-07, 3.55563, 2.42241)
+transform = Transform3D(1, 7.93082e-08, -1.55825e-07, 3.55271e-15, 0.891212, 0.453587, 1.74846e-07, -0.453587, 0.891212, -5.85543e-07, 5.24563, 3.34891)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Camera Rig"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.16155, -0.903463)
