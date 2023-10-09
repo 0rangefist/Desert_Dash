@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://1q88qxltsvv4"]
+
+[ext_resource type="PackedScene" uid="uid://yh2nto2qra2u" path="res://models/ground.blend" id="1_lfo7l"]
+[ext_resource type="PackedScene" uid="uid://mbrneq8gt54u" path="res://models/cylinder.blend" id="2_v2u73"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ghqt4"]
+size = Vector3(17.0717, 1, 35)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7rj8i"]
+radius = 0.999908
+
+[node name="LevelSection" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Mesh" parent="Ground" instance=ExtResource("1_lfo7l")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_ghqt4")
+
+[node name="Cylinder" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.176)
+
+[node name="Cylinder" parent="Cylinder" instance=ExtResource("2_v2u73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+shape = SubResource("CylinderShape3D_7rj8i")
+
+[node name="Cylinder2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10.0637)
+
+[node name="Cylinder" parent="Cylinder2" instance=ExtResource("2_v2u73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+shape = SubResource("CylinderShape3D_7rj8i")
+
+[node name="Cylinder3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -8.52708)
+
+[node name="Cylinder" parent="Cylinder3" instance=ExtResource("2_v2u73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cylinder3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+shape = SubResource("CylinderShape3D_7rj8i")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://0q861r3s86yf"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_fmbye"]
+[ext_resource type="PackedScene" uid="uid://4pq1p6blrsj6" path="res://models/monkey_head1.blend" id="2_i7sfk"]
+[ext_resource type="PackedScene" uid="uid://cwy8lvf7s4umh" path="res://scenes/swipe_detector.tscn" id="3_h0uno"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jswla"]
+radius = 1.30022
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_fmbye")
+
+[node name="monkey_head1" parent="." instance=ExtResource("2_i7sfk")]
+transform = Transform3D(0.999999, 0.00103874, 0.000548089, -0.00104506, 0.999931, 0.0116691, -0.00053593, -0.0116697, 0.999932, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.00034, -0.000915798, -0.000346983, -0.00116923, 0.816182, 0.239431, 0.00011456, 0.333387, -0.586164, -7.84439e-11, 0.0722891, -0.0407701)
+shape = SubResource("SphereShape3D_jswla")
+
+[node name="SwipeDetector" parent="." instance=ExtResource("3_h0uno")]
+
+[connection signal="down_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_down_swipe"]
+[connection signal="left_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_left_swipe"]
+[connection signal="right_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_right_swipe"]
+[connection signal="up_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_up_swipe"]

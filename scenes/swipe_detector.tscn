@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwy8lvf7s4umh"]
+
+[ext_resource type="Script" path="res://scripts/swipe_detector.gd" id="1_gjla2"]
+
+[node name="SwipeDetector" type="Camera2D"]
+script = ExtResource("1_gjla2")
