@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mbrneq8gt54u" path="res://models/cylinder.blend" id="2_xheti"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ghqt4"]
-size = Vector3(17.0717, 1, 35)
+size = Vector3(17.0717, 0.749653, 35)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7rj8i"]
 radius = 0.999908
