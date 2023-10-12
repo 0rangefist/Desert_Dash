@@ -11,9 +11,11 @@ var rightmost_position = 0.0  # Initial rightmost position
 var level_units = []
 
 var level_loader = LevelLoader.new()
+var daily_challenge
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	daily_challenge = await DailyChallenge.new()
 	level_loader.load_level("desert")
 	# randomly instantiate the first visible set of units
 	for cycle in range(MAX_VISIBLE_UNITS):
