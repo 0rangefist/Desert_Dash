@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://btfrppo0ck43k"]
+
+[ext_resource type="Script" path="res://scripts/objects/magnet.gd" id="1_kkspc"]
+[ext_resource type="PackedScene" uid="uid://cxx8i1xtdnw4o" path="res://models/magnet.blend" id="2_2bg5k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_61e2j"]
+radius = 0.278938
+
+[node name="Magnet" type="Area3D"]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0, 0, 0)
+script = ExtResource("1_kkspc")
+
+[node name="Mesh" parent="." instance=ExtResource("2_2bg5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_61e2j")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33018)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.743868, 0.668326, 0, -0.668326, 0.743868, 0, 3.61306, 3.35831)
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_on_player_encountered"]

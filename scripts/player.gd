@@ -91,6 +91,20 @@ func collect_coin():
 	# Send signal to Update UI
 	emit_signal("coin_collected", coin_count)
 
+func collect_magnet():
+	print("PLAYER COLLECTED A MAGNET!!!")
+	# timer for magnet ability starts
+	# logic to detect coins within a certain radius
+	# all those coins are collected self.collect_coin
+	# animation played for each coin 
+	# timer expires, magnet ability stops
+	
+func collect_shield():
+	print("PLAYER COLLECTED A SHIELD!!!")
+	# timer for shield ability starts`
+	# collision with world is turned off
+	# timer expires, collision is restored
+
 
 # Swipe Detection
 func _on_swipe_detector_down_swipe():
