@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bip3eqr3bxrf7"]
-
-[ext_resource type="PackedScene" uid="uid://co7x58iynq5j1" path="res://models/monkey.blend" id="1_ues0e"]
-
-[node name="monkey" instance=ExtResource("1_ues0e")]

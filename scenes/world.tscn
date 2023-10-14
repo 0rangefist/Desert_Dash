@@ -29,9 +29,5 @@ transform = Transform3D(0.969171, 0.24616, 0.0106486, 0, -0.0432183, 0.999066, 0
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.00503063, 1.26776, 8.19456)
 
 [node name="HUD" parent="." instance=ExtResource("5_hhwul")]
-offset_left = -240.0
-offset_top = -300.0
-offset_right = -240.0
-offset_bottom = -300.0
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
