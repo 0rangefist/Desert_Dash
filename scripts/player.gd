@@ -1,11 +1,17 @@
 extends CharacterBody3D
 
+# controls
 const JUMP_VELOCITY = 4.5
 const REBOUND_AMT = 1  # the distance to rebound
 const MOVE_DURATION = 0.1  # time taken to move left/right
 var lane = { 'LEFT': -5, 'CENTER': 0, 'RIGHT': 5}
 var player_position = lane.CENTER
 
+# collectables
+var coin_count = 0
+
+# signals
+signal coin_collected
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -28,13 +34,17 @@ func _physics_process(delta):
 		move_player_left()
 	elif Input.is_action_just_pressed("move_right"):
 		move_player_right()
-	if Input.is_action_just_pressed("trigger_up"):
-		fire_weapon()
-	if Input.is_action_just_pressed("trigger_down"):
-		pass
+	if Input.is_action_pressed("trigger_up"):
+		#fire_weapon()
+		# for testing purposes
+		position.z -= 0.5
+	if Input.is_action_pressed("trigger_down"):
+		# for testing purposes
+		position.z += 0.5
 
 	move_and_slide()
-	
+
+# Movement
 func move_player_left():
 	var tween = create_tween().set_ease(Tween.EASE_OUT)
 	if player_position == lane.CENTER:
@@ -71,21 +81,26 @@ func move_player_right():
 		#tween.tween_interval(0.1)
 		tween.tween_property(self, "position:x", lane.RIGHT, MOVE_DURATION)
 
-
 func fire_weapon():
 	velocity.y = JUMP_VELOCITY
+	
+# Object Collection
+func collect_coin():
+	print("PLAYER COLLECTED A COIN!!!")
+	coin_count += 1
+	# Send signal to Update UI
+	emit_signal("coin_collected", coin_count)
 
+
+# Swipe Detection
 func _on_swipe_detector_down_swipe():
 	pass # Replace with function body.
-
 
 func _on_swipe_detector_left_swipe():
 	move_player_left()
 
-
 func _on_swipe_detector_right_swipe():
 	move_player_right()
-
 
 func _on_swipe_detector_up_swipe():
 	fire_weapon()

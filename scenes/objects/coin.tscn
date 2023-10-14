@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://boc8t8m3q6gtt"]
+
+[ext_resource type="Script" path="res://scripts/objects/coin.gd" id="1_pf41v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5rge"]
+albedo_color = Color(1, 0.905882, 0.117647, 1)
+metallic = 1.0
+metallic_specular = 1.0
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 0.2
+emission_on_uv2 = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vcsvk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_61e2j"]
+radius = 0.138072
+
+[node name="Coin" type="Area3D"]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0, 0, 0)
+script = ExtResource("1_pf41v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.1987e-09, -0.016714, -0.193194, 0.269266, -1.04883e-09, 0, -8.44476e-09, -0.0172156, 0.187565, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_g5rge")
+mesh = SubResource("CylinderMesh_vcsvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_61e2j")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33018)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.743868, 0.668326, 0, -0.668326, 0.743868, 0, 3.61306, 3.35831)
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_on_player_encountered"]

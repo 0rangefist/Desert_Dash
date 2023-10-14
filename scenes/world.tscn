@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=6 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://cppeapphs54k8" path="res://scenes/section.tscn" id="1_ydwu8"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
+[ext_resource type="PackedScene" uid="uid://boc8t8m3q6gtt" path="res://scenes/objects/coin.tscn" id="4_exo1m"]
+[ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_snt1e")
@@ -10,10 +12,10 @@ script = ExtResource("1_snt1e")
 [node name="Player" parent="." instance=ExtResource("2_3wiuu")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1.37571, 15.379)
 
-[node name="Camera Rig" type="Node3D" parent="Player"]
+[node name="CameraRig" type="Node3D" parent="Player"]
 transform = Transform3D(1, 7.93082e-08, -1.55825e-07, 3.55271e-15, 0.891212, 0.453587, 1.74846e-07, -0.453587, 0.891212, -5.85543e-07, 5.24563, 3.34891)
 
-[node name="Camera3D" type="Camera3D" parent="Player/Camera Rig"]
+[node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.16155, -0.903463)
 
 [node name="LevelSection" parent="." instance=ExtResource("1_ydwu8")]
@@ -22,3 +24,14 @@ visible = false
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.969171, 0.24616, 0.0106486, 0, -0.0432183, 0.999066, 0.24639, -0.968265, -0.0418859, -25.4428, 12.2864, 20.2081)
+
+[node name="Coin" parent="." instance=ExtResource("4_exo1m")]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.00503063, 1.26776, 8.19456)
+
+[node name="HUD" parent="." instance=ExtResource("5_hhwul")]
+offset_left = -240.0
+offset_top = -300.0
+offset_right = -240.0
+offset_bottom = -300.0
+
+[connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
