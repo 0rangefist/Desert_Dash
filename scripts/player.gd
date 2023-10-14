@@ -12,6 +12,10 @@ var coin_count = 0
 
 # signals
 signal coin_collected
+signal shield_collected
+signal shield_dropped
+signal magnet_collected
+signal magnet_dropped
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -93,17 +97,24 @@ func collect_coin():
 
 func collect_magnet():
 	print("PLAYER COLLECTED A MAGNET!!!")
+	magnet_collected.emit()
 	# timer for magnet ability starts
 	# logic to detect coins within a certain radius
 	# all those coins are collected self.collect_coin
 	# animation played for each coin 
 	# timer expires, magnet ability stops
+	magnet_dropped.emit()
 	
 func collect_shield():
 	print("PLAYER COLLECTED A SHIELD!!!")
-	# timer for shield ability starts`
-	# collision with world is turned off
-	# timer expires, collision is restored
+	shield_collected.emit()
+	# disable collision with the world
+	set_collision_layer_value(0, false)
+	# timer for shield ability starts
+	await get_tree().create_timer(5).timeout
+	# enable collision with the world
+	set_collision_layer_value(0, true)
+	shield_dropped.emit()
 
 
 # Swipe Detection

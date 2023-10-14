@@ -45,3 +45,5 @@ transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.0133057, 
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.98363, 1.53508, 6.98914)
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
+[connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]
+[connection signal="shield_dropped" from="Player" to="HUD" method="_on_player_shield_dropped"]

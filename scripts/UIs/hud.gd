@@ -13,3 +13,11 @@ func _process(delta):
 
 func _on_player_coin_collected(coin_count):
 	$CoinCount.text = "Coins: " + str(coin_count)
+
+
+func _on_player_shield_collected():
+	# enable and play shield animated sprite
+	$AnimatedSprite2D.visible = true
+
+func _on_player_shield_dropped():
+	$AnimatedSprite2D.visible = false

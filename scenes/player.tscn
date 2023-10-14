@@ -8,6 +8,7 @@
 radius = 1.30022
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 14
 script = ExtResource("1_fmbye")
 
 [node name="monkey_head1" parent="." instance=ExtResource("2_i7sfk")]

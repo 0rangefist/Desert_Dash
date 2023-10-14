@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7d1ifls68rb5"]
+[gd_scene load_steps=5 format=3 uid="uid://c7d1ifls68rb5"]
 
 [ext_resource type="Script" path="res://scripts/UIs/hud.gd" id="1_py2ra"]
+[ext_resource type="Texture2D" uid="uid://hepa2hmfs1a6" path="res://sprites/hud_shield.png" id="2_qxk2b"]
+[ext_resource type="Texture2D" uid="uid://cpldt4rvw1afp" path="res://sprites/hud_shield_grow.png" id="3_1ejum"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7ilb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qxk2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1ejum")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -12,9 +28,15 @@ grow_vertical = 2
 script = ExtResource("1_py2ra")
 
 [node name="CoinCount" type="Label" parent="."]
-layout_mode = 0
 offset_left = 35.0
 offset_top = 21.0
 offset_right = 96.0
 offset_bottom = 47.0
 text = "Coins: 0"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(53, 66)
+sprite_frames = SubResource("SpriteFrames_g7ilb")
+autoplay = "default"
+frame_progress = 0.81485
