@@ -1,10 +1,11 @@
 extends Node3D
 
-var rotation_speed = PI  # Adjust the speed of rotation
+var rotation_speed = 4  # Adjust the speed of rotation
 
 func _ready():
-	# You can add any setup code here
-	pass
+	# Generate a random starting angle
+	var initial_rotation = randi_range(0, 4) * (0.75 * PI) 
+	rotate(Vector3.UP, initial_rotation)
 
 func _process(delta):
 	# Rotate the coin in place

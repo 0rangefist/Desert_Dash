@@ -58,6 +58,13 @@ trigger_down={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Ground"
+3d_physics/layer_3="Obstacles"
+3d_physics/layer_4="Collectibles"
+
 [rendering]
 
 renderer/rendering_method="mobile"

@@ -7,15 +7,30 @@ const MOVE_DURATION = 0.1  # time taken to move left/right
 var lane = { 'LEFT': -5, 'CENTER': 0, 'RIGHT': 5}
 var player_position = lane.CENTER
 
+const SHIELD_UP_TIME = 6  # num of secs shield is active
+var shield_in_collection = false
+var shield_is_up = false
+var shield_up_timer = Timer.new()
+
 # collectables
 var coin_count = 0
 
 # signals
 signal coin_collected
+signal shield_collected
+signal shield_up
+signal shield_dropped
+signal magnet_collected
+signal magnet_dropped
+
+# collision/mask layers
+const LAYER = {'PLAYER': 1, 'GROUND': 2, 'OBSTACLES': 3, 'COLLECTIBLES': 4}
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _on_ready():
+	pass
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -39,6 +54,9 @@ func _physics_process(delta):
 		# for testing purposes
 		position.z -= 0.5
 	if Input.is_action_pressed("trigger_down"):
+		# activate shield if in collection and not up already
+		if shield_in_collection and !shield_is_up:
+			put_up_shield()
 		# for testing purposes
 		position.z += 0.5
 
@@ -86,29 +104,61 @@ func fire_weapon():
 	
 # Object Collection
 func collect_coin():
-	print("PLAYER COLLECTED A COIN!!!")
+	print("PLAYER COLLECTED A COIN")
 	coin_count += 1
 	# Send signal to Update UI
-	emit_signal("coin_collected", coin_count)
+	coin_collected.emit(coin_count)
 
 func collect_magnet():
-	print("PLAYER COLLECTED A MAGNET!!!")
+	print("PLAYER COLLECTED A MAGNET")
+	magnet_collected.emit()
 	# timer for magnet ability starts
 	# logic to detect coins within a certain radius
 	# all those coins are collected self.collect_coin
 	# animation played for each coin 
 	# timer expires, magnet ability stops
+	magnet_dropped.emit()
 	
 func collect_shield():
-	print("PLAYER COLLECTED A SHIELD!!!")
-	# timer for shield ability starts`
-	# collision with world is turned off
-	# timer expires, collision is restored
+	# collect shield if not already in collection
+	if not shield_in_collection:
+		print("PLAYER COLLECTED A SHIELD")
+		# Update HUD to show player has shield in collection
+		shield_collected.emit()
+		shield_in_collection = true
+	# if shield already in use, reset it's up time
+	elif shield_in_collection and shield_is_up:
+		put_up_shield()
+		
+	
+func put_up_shield():
+	shield_is_up = true
+	print("PLAYER PUT UP A SHIELD")
+	# disable collision with obstacles
+	set_collision_mask_value(LAYER.OBSTACLES, false)
+	# signal emitted to HUD to display shield up time
+	shield_up.emit(SHIELD_UP_TIME)
+	# timer for shield effect (collision off) starts
+	#await get_tree().create_timer(SHIELD_UP_TIME).timeout
+	shield_up_timer.timeout.connect(_on_shield_up_timer_timeout)
+	add_child(shield_up_timer)
+	shield_up_timer.wait_time = SHIELD_UP_TIME
+	shield_up_timer.start()
 
+func _on_shield_up_timer_timeout():
+	print("SHIELD UP TIME EXPIRED")
+	# re-enable collision with obstacles
+	set_collision_mask_value(LAYER.OBSTACLES, true)
+	# remove shield from collection, so it can't be used again
+	shield_in_collection = false
+	shield_is_up = false
+	shield_dropped.emit()
 
 # Swipe Detection
 func _on_swipe_detector_down_swipe():
-	pass # Replace with function body.
+	# activate shield if in collection and not up already
+	if shield_in_collection and !shield_is_up:
+		put_up_shield()
 
 func _on_swipe_detector_left_swipe():
 	move_player_left()

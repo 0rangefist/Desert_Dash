@@ -8,13 +8,13 @@ radius = 0.278938
 
 [node name="Magnet" type="Area3D"]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0, 0, 0)
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_kkspc")
 
 [node name="Mesh" parent="." instance=ExtResource("2_2bg5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_61e2j")
 
 [node name="Camera3D" type="Camera3D" parent="."]

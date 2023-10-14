@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7d1ifls68rb5"]
+[gd_scene load_steps=7 format=3 uid="uid://c7d1ifls68rb5"]
 
 [ext_resource type="Script" path="res://scripts/UIs/hud.gd" id="1_py2ra"]
+[ext_resource type="Texture2D" uid="uid://hepa2hmfs1a6" path="res://sprites/hud_shield.png" id="2_qxk2b"]
+[ext_resource type="Texture2D" uid="uid://cpldt4rvw1afp" path="res://sprites/hud_shield_grow.png" id="3_1ejum"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7ilb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qxk2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1ejum")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpg4r"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8nk"]
+bg_color = Color(0.52993, 0.897281, 1.54018e-06, 1)
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -18,3 +40,27 @@ offset_top = 21.0
 offset_right = 96.0
 offset_bottom = 47.0
 text = "Coins: 0"
+
+[node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(53, 66)
+sprite_frames = SubResource("SpriteFrames_g7ilb")
+autoplay = "default"
+frame_progress = 0.81485
+
+[node name="ProgressBar" type="ProgressBar" parent="ShieldSprite"]
+offset_left = -16.0
+offset_top = 21.0
+offset_right = 194.0
+offset_bottom = 61.0
+scale = Vector2(0.15, 0.15)
+theme_override_styles/background = SubResource("StyleBoxFlat_tpg4r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_my8nk")
+max_value = 30.0
+step = 1.0
+value = 30.0
+show_percentage = false
+
+[node name="ProgressTimer" type="Timer" parent="ShieldSprite"]
+
+[connection signal="timeout" from="ShieldSprite/ProgressTimer" to="." method="_on_progress_timer_timeout"]
