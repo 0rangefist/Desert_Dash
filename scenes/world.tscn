@@ -28,16 +28,25 @@ visible = false
 transform = Transform3D(-0.167568, -0.939525, 0.298685, 0.977335, -0.118554, 0.175387, -0.12937, 0.321305, 0.938097, -25.4428, 12.2864, 20.2081)
 
 [node name="Coin" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.00503063, 1.26776, 10.9211)
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 6.44326)
 
 [node name="Coin2" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.00503063, 1.26776, 8.83962)
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 4.36181)
 
 [node name="Coin3" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.00503063, 1.26776, 7.01543)
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 2.53763)
+
+[node name="Coin4" parent="." instance=ExtResource("4_exo1m")]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -4.37756)
+
+[node name="Coin5" parent="." instance=ExtResource("4_exo1m")]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -6.45901)
+
+[node name="Coin6" parent="." instance=ExtResource("4_exo1m")]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -8.2832)
 
 [node name="Magnet" parent="." instance=ExtResource("5_6p3a8")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.0133057, 1.44594, 3.89146)
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.0133057, 1.44594, 8.80055)
 
 [node name="HUD" parent="." instance=ExtResource("5_hhwul")]
 

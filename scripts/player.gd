@@ -12,6 +12,9 @@ var shield_in_collection = false
 var shield_is_up = false
 var shield_up_timer = Timer.new()
 
+const MAGNET_ON_TIME = 2  # num of secs magnet is active
+var magnet_on_timer = Timer.new()
+
 # collectables
 var coin_count = 0
 
@@ -51,8 +54,8 @@ func _physics_process(delta):
 		move_player_right()
 	if Input.is_action_pressed("trigger_up"):
 		#fire_weapon()
-		# for testing purposes
-		position.z -= 0.5
+		# for testing purposes, move forward
+		position.z -= 0.2
 	if Input.is_action_pressed("trigger_down"):
 		# activate shield if in collection and not up already
 		if shield_in_collection and !shield_is_up:
@@ -112,13 +115,29 @@ func collect_coin():
 func collect_magnet():
 	print("PLAYER COLLECTED A MAGNET")
 	magnet_collected.emit()
+	# turn on magnet
+	$MagnetBox.monitoring = true
 	# timer for magnet ability starts
-	# logic to detect coins within a certain radius
-	# all those coins are collected self.collect_coin
-	# animation played for each coin 
-	# timer expires, magnet ability stops
-	magnet_dropped.emit()
-	
+	magnet_on_timer.timeout.connect(_on_magnet_on_timer_timeout)
+	add_child(magnet_on_timer)
+	magnet_on_timer.wait_time = MAGNET_ON_TIME
+	magnet_on_timer.start()
+
+func _on_magnet_on_timer_timeout():
+	print("MAGNET ON TIME EXPIRED")
+	# turn off magnet
+	$MagnetBox.monitoring = false
+	magnet_on_timer.stop()
+
+func _on_magnet_box_area_entered(area):
+	if area.is_in_group("coins"):
+		print(area.name + " HAS ENTERED MAGNET BOX")
+		var tween = create_tween()
+		tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+		#tween.tween_property(area, "position", 2 * Vector3.UP, 0.2 )
+		tween.tween_property(area, "position", global_transform.origin, 0.2 )
+
+
 func collect_shield():
 	# collect shield if not already in collection
 	if not shield_in_collection:
@@ -153,6 +172,7 @@ func _on_shield_up_timer_timeout():
 	shield_in_collection = false
 	shield_is_up = false
 	shield_dropped.emit()
+	shield_up_timer.stop()
 
 # Swipe Detection
 func _on_swipe_detector_down_swipe():
