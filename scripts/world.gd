@@ -7,7 +7,7 @@ var UNIT_LENGTH = 35.0  # Length of each unit
 var leftmost_position = 0.0  # Initial leftmost position
 var rightmost_position = 0.0  # Initial rightmost position
 
-# Store the instantiated level units in an array
+# Store the instantiated level unit  in an array
 var level_units = []
 
 var level_loader = LevelLoader.new()
