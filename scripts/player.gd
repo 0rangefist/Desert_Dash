@@ -12,7 +12,7 @@ var shield_in_collection = false
 var shield_is_up = false
 var shield_up_timer = Timer.new()
 
-const MAGNET_ON_TIME = 2  # num of secs magnet is active
+const MAGNET_ON_TIME = 1000  # num of secs magnet is active
 var magnet_on_timer = Timer.new()
 
 # collectables
@@ -129,13 +129,13 @@ func _on_magnet_on_timer_timeout():
 	$MagnetBox.monitoring = false
 	magnet_on_timer.stop()
 
-func _on_magnet_box_area_entered(area):
-	if area.is_in_group("coins"):
-		print(area.name + " HAS ENTERED MAGNET BOX")
+func _on_magnet_box_area_entered(collectible):
+	if collectible.is_in_group("coins"):
+		print(collectible.name + " HAS ENTERED MAGNET BOX")
 		var tween = create_tween()
-		tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-		#tween.tween_property(area, "position", 2 * Vector3.UP, 0.2 )
-		tween.tween_property(area, "position", global_transform.origin, 0.2 )
+		#tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+		#tween.tween_property(collectible, "position", 2 * Vector3.UP, 0.2 )
+		tween.tween_property(collectible, "global_position", global_position, 0.1 )
 
 
 func collect_shield():

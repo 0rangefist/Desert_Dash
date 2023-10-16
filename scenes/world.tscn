@@ -29,32 +29,41 @@ transform = Transform3D(-0.167568, -0.939525, 0.298685, 0.977335, -0.118554, 0.1
 
 [node name="Coin" parent="." instance=ExtResource("4_exo1m")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 6.44326)
+visible = false
 
 [node name="Coin2" parent="." instance=ExtResource("4_exo1m")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 4.36181)
+visible = false
 
 [node name="Coin3" parent="." instance=ExtResource("4_exo1m")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 2.53763)
+visible = false
 
 [node name="Coin4" parent="." instance=ExtResource("4_exo1m")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -4.37756)
+visible = false
 
 [node name="Coin5" parent="." instance=ExtResource("4_exo1m")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -6.45901)
+visible = false
 
 [node name="Coin6" parent="." instance=ExtResource("4_exo1m")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -8.2832)
+visible = false
 
 [node name="Magnet" parent="." instance=ExtResource("5_6p3a8")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.0133057, 1.44594, 8.80055)
+visible = false
 
 [node name="HUD" parent="." instance=ExtResource("5_hhwul")]
 
 [node name="Shield" parent="." instance=ExtResource("7_jcsn8")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.98363, 1.53508, 6.98914)
+visible = false
 
 [node name="Shield2" parent="." instance=ExtResource("7_jcsn8")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.01637, 1.53508, 0.738132)
+visible = false
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]
