@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=10 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
 [ext_resource type="Environment" uid="uid://bew3uqwb6yegh" path="res://new-world-2.tres" id="2_fy5o0"]
 [ext_resource type="PackedScene" uid="uid://yh2nto2qra2u" path="res://models/ground.blend" id="4_e3hwj"]
+[ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="4_uwh34"]
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 [ext_resource type="PackedScene" uid="uid://boc8t8m3q6gtt" path="res://scenes/objects/coin.tscn" id="6_jo41o"]
 [ext_resource type="PackedScene" uid="uid://btfrppo0ck43k" path="res://scenes/objects/magnet.tscn" id="7_0d433"]
@@ -19,16 +20,20 @@ environment = ExtResource("2_fy5o0")
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1.37571, 15.379)
 
 [node name="CameraRig" type="Node3D" parent="Player"]
-transform = Transform3D(1, 7.93082e-08, -1.55825e-07, 3.55271e-15, 0.891212, 0.453587, 1.74846e-07, -0.453587, 0.891212, -5.85543e-07, 5.24563, 3.34891)
+transform = Transform3D(1, 1.7108e-08, -1.74007e-07, 0, 0.995202, 0.0978444, 1.74846e-07, -0.0978444, 0.995202, -9.27929e-07, 4.40095, 5.30713)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
-transform = Transform3D(1, -3.37121e-13, 1.54708e-13, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -9.79455e-14, -1.83055, -2.95927)
-doppler_tracking = 1
-fov = 120.0
+transform = Transform3D(1, -4.01922e-13, -1.08028e-13, 7.97305e-14, 0.931507, 0.363723, 1.1076e-13, -0.363723, 0.931507, -7.48675e-13, -1.72868, -3.99537)
+fov = 110.0
 far = 140.0
+
+[node name="GroundMesh" parent="." instance=ExtResource("4_uwh34")]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 35, 0, -0.840884, 0)
+skeleton = NodePath("../Ground")
 
 [node name="Ground" parent="." instance=ExtResource("4_e3hwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.840884, 0)
+visible = false
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.167568, -0.939525, 0.298686, 0.692661, 0.103391, 0.713815, -0.701528, 0.3265, 0.633447, -25.4428, 12.2864, 20.2081)
@@ -42,12 +47,15 @@ shadow_blur = 3.443
 
 [node name="Coin" parent="." instance=ExtResource("6_jo41o")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.609723, 1.51509, 11.9354)
+visible = false
 
 [node name="Magnet" parent="." instance=ExtResource("7_0d433")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 2.74179, 1.50822, 6.85209)
+visible = false
 
 [node name="Shield" parent="." instance=ExtResource("8_jadx2")]
 transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.649789, 1.35298, 10.051)
+visible = false
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cppeapphs54k8"]
+[gd_scene load_steps=6 format=3 uid="uid://cppeapphs54k8"]
 
 [ext_resource type="PackedScene" uid="uid://yh2nto2qra2u" path="res://models/ground.blend" id="1_w16ks"]
 [ext_resource type="PackedScene" uid="uid://mbrneq8gt54u" path="res://models/cylinder.blend" id="2_k0u3o"]
+[ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="2_sbetg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bkfyu"]
 size = Vector3(17.0717, 0.749653, 35)
@@ -14,6 +15,9 @@ radius = 0.999908
 [node name="Ground" type="StaticBody3D" parent="."]
 
 [node name="Mesh" parent="Ground" instance=ExtResource("1_w16ks")]
+visible = false
+
+[node name="MeshInstance3D" parent="Ground" instance=ExtResource("2_sbetg")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_bkfyu")
