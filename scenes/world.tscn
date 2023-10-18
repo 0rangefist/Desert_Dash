@@ -1,15 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=9 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
-[ext_resource type="PackedScene" uid="uid://cppeapphs54k8" path="res://scenes/section.tscn" id="1_ydwu8"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
-[ext_resource type="PackedScene" uid="uid://boc8t8m3q6gtt" path="res://scenes/objects/coin.tscn" id="4_exo1m"]
-[ext_resource type="PackedScene" uid="uid://btfrppo0ck43k" path="res://scenes/objects/magnet.tscn" id="5_6p3a8"]
+[ext_resource type="Environment" uid="uid://bew3uqwb6yegh" path="res://new-world-2.tres" id="2_fy5o0"]
+[ext_resource type="PackedScene" uid="uid://yh2nto2qra2u" path="res://models/ground.blend" id="4_e3hwj"]
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
-[ext_resource type="PackedScene" uid="uid://b0p2gkjws2g5v" path="res://scenes/objects/shield.tscn" id="7_jcsn8"]
+[ext_resource type="PackedScene" uid="uid://boc8t8m3q6gtt" path="res://scenes/objects/coin.tscn" id="6_jo41o"]
+[ext_resource type="PackedScene" uid="uid://btfrppo0ck43k" path="res://scenes/objects/magnet.tscn" id="7_0d433"]
+[ext_resource type="PackedScene" uid="uid://b0p2gkjws2g5v" path="res://scenes/objects/shield.tscn" id="8_jadx2"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_snt1e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_fy5o0")
 
 [node name="Player" parent="." instance=ExtResource("2_3wiuu")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1.37571, 15.379)
@@ -18,52 +22,32 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 1.375
 transform = Transform3D(1, 7.93082e-08, -1.55825e-07, 3.55271e-15, 0.891212, 0.453587, 1.74846e-07, -0.453587, 0.891212, -5.85543e-07, 5.24563, 3.34891)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
-transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, -1.16155, -0.903463)
+transform = Transform3D(1, -3.37121e-13, 1.54708e-13, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, -9.79455e-14, -1.83055, -2.95927)
+doppler_tracking = 1
+fov = 120.0
+far = 140.0
 
-[node name="LevelSection" parent="." instance=ExtResource("1_ydwu8")]
+[node name="Ground" parent="." instance=ExtResource("4_e3hwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.840884, 0)
-visible = false
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.167568, -0.939525, 0.298685, 0.977335, -0.118554, 0.175387, -0.12937, 0.321305, 0.938097, -25.4428, 12.2864, 20.2081)
-
-[node name="Coin" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 6.44326)
-visible = false
-
-[node name="Coin2" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 4.36181)
-visible = false
-
-[node name="Coin3" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.00503, 1.26776, 2.53763)
-visible = false
-
-[node name="Coin4" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -4.37756)
-visible = false
-
-[node name="Coin5" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -6.45901)
-visible = false
-
-[node name="Coin6" parent="." instance=ExtResource("4_exo1m")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.99497, 1.26776, -8.2832)
-visible = false
-
-[node name="Magnet" parent="." instance=ExtResource("5_6p3a8")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.0133057, 1.44594, 8.80055)
-visible = false
+transform = Transform3D(-0.167568, -0.939525, 0.298686, 0.692661, 0.103391, 0.713815, -0.701528, 0.3265, 0.633447, -25.4428, 12.2864, 20.2081)
+light_color = Color(1, 0.945098, 0.72549, 1)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.54
+shadow_blur = 3.443
 
 [node name="HUD" parent="." instance=ExtResource("5_hhwul")]
 
-[node name="Shield" parent="." instance=ExtResource("7_jcsn8")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 4.98363, 1.53508, 6.98914)
-visible = false
+[node name="Coin" parent="." instance=ExtResource("6_jo41o")]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.609723, 1.51509, 11.9354)
 
-[node name="Shield2" parent="." instance=ExtResource("7_jcsn8")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -5.01637, 1.53508, 0.738132)
-visible = false
+[node name="Magnet" parent="." instance=ExtResource("7_0d433")]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 2.74179, 1.50822, 6.85209)
+
+[node name="Shield" parent="." instance=ExtResource("8_jadx2")]
+transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.649789, 1.35298, 10.051)
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]

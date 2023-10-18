@@ -13,7 +13,6 @@ collision_mask = 3
 script = ExtResource("1_w6crs")
 
 [node name="Mesh" parent="." instance=ExtResource("2_ihfhc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0222699, 0)
@@ -21,10 +20,6 @@ shape = SubResource("SphereShape3D_61e2j")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33018)
-visible = false
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.743868, 0.668326, 0, -0.668326, 0.743868, 0, 3.61306, 3.35831)
 visible = false
 
 [connection signal="body_entered" from="." to="." method="_on_player_encountered"]

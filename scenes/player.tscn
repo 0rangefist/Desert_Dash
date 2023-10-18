@@ -11,7 +11,7 @@ radius = 1.30022
 size = Vector3(25, 30, 20)
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 10
+collision_mask = 14
 script = ExtResource("1_fmbye")
 
 [node name="monkey_head1" parent="." instance=ExtResource("2_i7sfk")]

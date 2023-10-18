@@ -60,5 +60,5 @@ shape = SubResource("CylinderShape3D_7rj8i")
 [node name="CollectibleSpawner" parent="." instance=ExtResource("3_uw7d6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
 coin_probability = 0.0
-magnet_probability = 1.0
+magnet_probability = 0.4
 shield_probability = 0.0

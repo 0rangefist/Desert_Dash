@@ -12,7 +12,7 @@ var shield_in_collection = false
 var shield_is_up = false
 var shield_up_timer = Timer.new()
 
-const MAGNET_ON_TIME = 1000  # num of secs magnet is active
+const MAGNET_ON_TIME = 7  # num of secs magnet is active
 var magnet_on_timer = Timer.new()
 
 # collectables
@@ -53,15 +53,15 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("move_right"):
 		move_player_right()
 	if Input.is_action_pressed("trigger_up"):
-		#fire_weapon()
+		fire_weapon()
 		# for testing purposes, move forward
-		position.z -= 0.2
+		# position.z -= 0.2
 	if Input.is_action_pressed("trigger_down"):
 		# activate shield if in collection and not up already
 		if shield_in_collection and !shield_is_up:
 			put_up_shield()
 		# for testing purposes
-		position.z += 0.5
+		# position.z += 0.5
 
 	move_and_slide()
 
