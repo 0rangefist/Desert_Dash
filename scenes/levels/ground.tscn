@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://clg1fuo16tvss"]
+
+[ext_resource type="Texture2D" uid="uid://dlh86usgeo2xt" path="res://models/textures/GroundSand005_COL_1K.jpg" id="1_qgj7m"]
+[ext_resource type="Texture2D" uid="uid://bmebredkvouv4" path="res://models/textures/GroundSand005_NRM_1K.jpg" id="3_e3vb7"]
+[ext_resource type="Texture2D" uid="uid://bh5ch17o7oiv3" path="res://models/textures/GroundSand005_GLOSS_1K.jpg" id="4_3ieax"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_del53"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_qgj7m")
+emission_enabled = true
+emission = Color(0.988235, 0.835294, 0.490196, 1)
+emission_energy_multiplier = 1.4
+emission_operator = 1
+emission_texture = ExtResource("4_3ieax")
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("3_e3vb7")
+ao_light_affect = 0.28
+heightmap_scale = 2.334
+heightmap_flip_tangent = true
+heightmap_flip_binormal = true
+heightmap_flip_texture = true
+detail_albedo = ExtResource("1_qgj7m")
+detail_normal = ExtResource("3_e3vb7")
+uv1_scale = Vector3(-20.045, 2.5, 0)
+proximity_fade_distance = 0.0
+distance_fade_min_distance = 0.74
+distance_fade_max_distance = 5.65
+
+[sub_resource type="BoxMesh" id="BoxMesh_gnsum"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+transform = Transform3D(199.807, 0, 0, 0, 0.999034, 0, 0, 0, 34.9662, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_del53")
+lod_bias = 0.001
+mesh = SubResource("BoxMesh_gnsum")

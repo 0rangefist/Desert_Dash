@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://1q88qxltsvv4"]
+[gd_scene load_steps=7 format=3 uid="uid://1q88qxltsvv4"]
 
 [ext_resource type="PackedScene" uid="uid://yh2nto2qra2u" path="res://models/ground.blend" id="1_lfo7l"]
+[ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="2_eefyf"]
 [ext_resource type="PackedScene" uid="uid://mbrneq8gt54u" path="res://models/cylinder.blend" id="2_v2u73"]
 [ext_resource type="PackedScene" uid="uid://dno520qom06w7" path="res://scenes/collectible_spawner.tscn" id="3_uw7d6"]
 
@@ -17,9 +18,12 @@ collision_layer = 2
 collision_mask = 13
 
 [node name="Mesh" parent="Ground" instance=ExtResource("1_lfo7l")]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_rfjqu")
+
+[node name="MeshInstance3D" parent="Ground" instance=ExtResource("2_eefyf")]
 
 [node name="Cylinder" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.176)
@@ -60,5 +64,5 @@ shape = SubResource("CylinderShape3D_7rj8i")
 [node name="CollectibleSpawner" parent="." instance=ExtResource("3_uw7d6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
 coin_probability = 0.0
-magnet_probability = 1.0
+magnet_probability = 0.4
 shield_probability = 0.0
