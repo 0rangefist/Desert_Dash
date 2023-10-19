@@ -25,7 +25,7 @@ shape = SubResource("BoxShape3D_ghqt4")
 
 [node name="MeshInstance3D" parent="Ground" instance=ExtResource("2_bsjmh")]
 
-[node name="Cylinder" type="StaticBody3D" parent="."]
+[node name="Cylinder" type="StaticBody3D" parent="." groups=["cacti"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.176)
 collision_layer = 4
 collision_mask = 7
@@ -37,7 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
 shape = SubResource("CylinderShape3D_7rj8i")
 
-[node name="Cylinder2" type="StaticBody3D" parent="."]
+[node name="Cylinder2" type="StaticBody3D" parent="." groups=["cacti"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.28099)
 collision_layer = 4
 collision_mask = 7
@@ -49,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
 shape = SubResource("CylinderShape3D_7rj8i")
 
-[node name="Cylinder3" type="StaticBody3D" parent="."]
+[node name="Cylinder3" type="StaticBody3D" parent="." groups=["cacti"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -8.52708)
 collision_layer = 4
 collision_mask = 7
