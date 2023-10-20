@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ugvxg1qeo1xp"]
+
+[ext_resource type="Texture2D" uid="uid://bvryiphbp5qjl" path="res://textures/dust.png" id="1_5n0l8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5mmw"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 3, 4)
+linear_accel_max = 15.45
+radial_accel_max = 3.34
+hue_variation_min = -0.5
+hue_variation_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_drtd3"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.988235, 0.796078, 0.541176, 0.156863)
+albedo_texture = ExtResource("1_5n0l8")
+albedo_texture_msdf = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_85he5"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_drtd3")
+size = Vector2(2, 2)
+
+[node name="DustTrail" type="GPUParticles3D"]
+amount = 30
+speed_scale = 0.5
+randomness = 0.41
+fixed_fps = 10
+interpolate = false
+fract_delta = false
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_f5mmw")
+draw_pass_1 = SubResource("QuadMesh_85he5")

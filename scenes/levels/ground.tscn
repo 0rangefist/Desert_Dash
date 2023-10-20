@@ -30,7 +30,7 @@ distance_fade_max_distance = 5.65
 
 [sub_resource type="BoxMesh" id="BoxMesh_gnsum"]
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" groups=["ground"]]
 transform = Transform3D(199.807, 0, 0, 0, 0.999034, 0, 0, 0, 34.9662, 0, 0, 0)
 material_overlay = SubResource("StandardMaterial3D_del53")
 lod_bias = 0.001
