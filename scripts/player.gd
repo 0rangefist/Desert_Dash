@@ -25,6 +25,7 @@ signal shield_up
 signal shield_dropped
 signal magnet_collected
 signal magnet_dropped
+signal gameplay_one_second_elapsed
 
 # collision/mask layers
 const LAYER = {'PLAYER': 1, 'GROUND': 2, 'OBSTACLES': 3, 'COLLECTIBLES': 4}
@@ -32,6 +33,7 @@ const LAYER = {'PLAYER': 1, 'GROUND': 2, 'OBSTACLES': 3, 'COLLECTIBLES': 4}
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var total_gameplay_time = 0
 @onready var raycast = $RayCast3D
 
 func _on_ready():
@@ -203,3 +205,8 @@ func _on_area_3d_body_entered(body):
 	if !shield_is_up:
 		print("Player COLLIDED WITH " + body.name)
 		get_tree().reload_current_scene()
+
+# keep count of gameplay time every second and notify HUD
+func _on_score_timer_timeout():
+	total_gameplay_time += 1
+	gameplay_one_second_elapsed.emit(total_gameplay_time)

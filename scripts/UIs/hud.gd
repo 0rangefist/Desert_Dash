@@ -27,3 +27,12 @@ func _on_progress_timer_timeout():
 	if $ShieldSprite/ProgressBar.value > 0:
 		$ShieldSprite/ProgressBar.value -= 1
 
+# update the score time every second
+func _on_gameplay_one_second_elapsed(total_gameplay_time):
+	$ScoreTime.text = format_time(total_gameplay_time)
+
+# helper function to format time from secs to 00m:00s
+func format_time(total_time):
+	var minutes = int(total_time / 60)
+	var seconds = total_time % 60
+	return "Time: " + str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)

@@ -18,7 +18,6 @@
 resource_name = "Rock_1"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("10_e8n7u")
 normal_enabled = true
 normal_texture = ExtResource("11_6bcjf")
@@ -57,7 +56,6 @@ shadow_mesh = SubResource("ArrayMesh_3ujuj")
 resource_name = "Rock_3"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("12_dg1pv")
 normal_enabled = true
 normal_texture = ExtResource("13_n1ory")
@@ -147,13 +145,18 @@ mesh = SubResource("ArrayMesh_qqmvm")
 skeleton = NodePath("")
 
 [node name="Rock_3" type="Node3D" parent="."]
-transform = Transform3D(3.05731, -9.52003, -0.073312, -1.37006, -0.593382, 4.90836, -9.42209, -3.00281, -0.73751, 71.5267, 13.9752, -26.7234)
+transform = Transform3D(3.05731, -9.52003, -0.073312, -1.37006, -0.593382, 4.90836, -9.42209, -3.00281, -0.73751, 71.5267, 13.4258, -26.7234)
 
 [node name="Rock_3_Rock_3_0" type="MeshInstance3D" parent="Rock_3"]
 mesh = SubResource("ArrayMesh_a7csh")
 skeleton = NodePath("")
 
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
+[connection signal="gameplay_one_second_elapsed" from="Player" to="HUD" method="_on_gameplay_one_second_elapsed"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]
 [connection signal="shield_dropped" from="Player" to="HUD" method="_on_player_shield_dropped"]
 [connection signal="shield_up" from="Player" to="HUD" method="_on_player_shield_up"]
+[connection signal="timeout" from="ScoreTimer" to="Player" method="_on_score_timer_timeout"]
