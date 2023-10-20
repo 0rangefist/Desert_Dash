@@ -8,7 +8,7 @@ var lane = { 'LEFT': -5, 'CENTER': 0, 'RIGHT': 5}
 var player_position = lane.CENTER
 
 const SHIELD_UP_TIME = 6  # num of secs shield is active
-var shield_in_collection = false
+var shield_in_collection = true
 var shield_is_up = false
 var shield_up_timer = Timer.new()
 
@@ -25,12 +25,16 @@ signal shield_up
 signal shield_dropped
 signal magnet_collected
 signal magnet_dropped
+signal gameplay_one_second_elapsed
 
 # collision/mask layers
 const LAYER = {'PLAYER': 1, 'GROUND': 2, 'OBSTACLES': 3, 'COLLECTIBLES': 4}
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var total_gameplay_time = 0
+@onready var raycast = $RayCast3D
 
 func _on_ready():
 	pass
@@ -62,7 +66,6 @@ func _physics_process(delta):
 			put_up_shield()
 		# for testing purposes
 		# position.z += 0.5
-
 	move_and_slide()
 
 # Movement
@@ -103,7 +106,15 @@ func move_player_right():
 		tween.tween_property(self, "position:x", lane.RIGHT, MOVE_DURATION)
 
 func fire_weapon():
-	velocity.y = JUMP_VELOCITY
+	# for testing purposes
+	# velocity.y = JUMP_VELOCITY
+	if raycast.is_colliding():
+		var target = raycast.get_collider()
+		
+		if target != null and target.is_in_group("cacti"):
+			print("SHOOT: " + target.name)
+			target.queue_free()
+	
 	
 # Object Collection
 func collect_coin():
@@ -188,3 +199,14 @@ func _on_swipe_detector_right_swipe():
 
 func _on_swipe_detector_up_swipe():
 	fire_weapon()
+
+# if a level obstacle collides with the player
+func _on_area_3d_body_entered(body):
+	if !shield_is_up:
+		print("Player COLLIDED WITH " + body.name)
+		get_tree().reload_current_scene()
+
+# keep count of gameplay time every second and notify HUD
+func _on_score_timer_timeout():
+	total_gameplay_time += 1
+	gameplay_one_second_elapsed.emit(total_gameplay_time)

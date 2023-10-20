@@ -39,12 +39,22 @@ monitoring = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MagnetBox"]
 shape = SubResource("BoxShape3D_la6fk")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183909, -0.361688)
 shape = SubResource("BoxShape3D_c2kmu")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.718422, -0.454886)
+target_position = Vector3(0, 0, -10)
+collision_mask = 4
 
 [connection signal="down_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_down_swipe"]
 [connection signal="left_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_left_swipe"]
 [connection signal="right_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_right_swipe"]
 [connection signal="up_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_up_swipe"]
 [connection signal="area_entered" from="MagnetBox" to="." method="_on_magnet_box_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_entered"]

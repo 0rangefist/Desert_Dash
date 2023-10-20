@@ -28,6 +28,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	UNIT_SPEED += 0.0001
 	var unit_velocity = Vector3(0, 0, UNIT_SPEED)
 	
 	for unit in level_units:
