@@ -19,7 +19,7 @@ size = Vector3(1.55237, 1.65314, 2.21828)
 size = Vector3(0.235014, 0.186653, 0.545501)
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 14
+collision_mask = 30
 script = ExtResource("1_fmbye")
 
 [node name="jeep" parent="." instance=ExtResource("3_7lxgy")]

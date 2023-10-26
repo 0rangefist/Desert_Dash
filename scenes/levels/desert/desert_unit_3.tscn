@@ -12,7 +12,7 @@ size = Vector3(17.0717, 0.749653, 35)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 
 [node name="Mesh" parent="Ground" instance=ExtResource("1_dym8q")]
 visible = false

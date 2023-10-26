@@ -62,7 +62,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("trigger_up"):
 		fire_weapon()
 		# for testing purposes, move forward
-		# position.z -= 0.2
+		#position.z -= 0.2
 	if Input.is_action_pressed("trigger_down"):
 		# activate shield if in collection and not up already
 		if shield_in_collection and !shield_is_up:
@@ -117,8 +117,35 @@ func fire_weapon():
 		if target != null and target.is_in_group("cacti"):
 			print("SHOOT: " + target.name)
 			target.queue_free()
-	
-	
+		elif target != null and target.is_in_group("destructable_building"):
+			print("SHOOT: " + target.name)
+			#print("CHILD NODE: " + target.get_parent().get_child(0).get_child(2).name)
+			var roof_support = target.get_parent().get_node("RoofSupport")
+			var roof = target.get_parent().get_node("Roof")
+			var building = target.get_parent().get_node("Building")
+			if roof_support:
+				print("DESTROY: " + roof_support.name)
+				var tween = create_tween()
+				tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+				# Rotate the object around the x-axis, translate on Z and Y
+				tween.set_parallel()
+				tween.tween_property(roof_support, "rotation:x", deg_to_rad(-90), 0.1 )
+				tween.tween_property(roof_support, "position:z", 4.8, 0.1 )
+				tween.tween_property(roof_support, "position:y", -4.99, 0.1 )
+				#roof_support.queue_free()
+			if building:
+				# change building from obstacle into interactable
+				building.set_collision_layer_value(3, false)
+				building.set_collision_layer_value(5, true)
+			if roof:
+				var tween = create_tween()
+				tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+				# Rotate the object around the x-axis, translate on Z and Y
+				tween.set_parallel()
+				tween.tween_property(roof, "rotation:x", deg_to_rad(36),  0.12)
+				tween.tween_property(roof, "position:z", -1.2, 0.12)
+				tween.tween_property(roof, "position:y", 1.55,  0.12)
+				
 # Object Collection
 func collect_coin():
 	print("PLAYER COLLECTED A COIN")

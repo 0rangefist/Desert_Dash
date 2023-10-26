@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk5s46ok5qvvv"]
+
+[ext_resource type="PackedScene" uid="uid://syny0mtr8q70" path="res://models/roof_support.glb" id="1_grs5v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l35bm"]
+size = Vector3(0.132974, 1.69738, 0.157491)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0r0gu"]
+size = Vector3(0.132502, 1.69738, 0.153532)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rpt2x"]
+size = Vector3(0.155638, 3.54195, 0.20666)
+
+[node name="RoofSupport" type="StaticBody3D"]
+
+[node name="roof_support" parent="." instance=ExtResource("1_grs5v")]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54968, 0.845739, 3.91084)
+shape = SubResource("BoxShape3D_l35bm")
+
+[node name="CollisionShape2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43604, 0.845739, 3.91084)
+shape = SubResource("BoxShape3D_0r0gu")
+
+[node name="CollisionShape3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.0290333, 1.77651, 3.91084)
+shape = SubResource("BoxShape3D_rpt2x")
