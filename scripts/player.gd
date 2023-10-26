@@ -4,6 +4,9 @@ extends CharacterBody3D
 const JUMP_VELOCITY = 7
 const REBOUND_AMT = 1  # the distance to rebound
 const MOVE_DURATION = 0.1  # time taken to move left/right
+const SPEED = 12 # driving speed of the player
+const DELTA_SPEED = 0.0 # offset per frame to accelerate player over time
+var delta_speed = DELTA_SPEED
 var lane = { 'LEFT': -5, 'CENTER': 0, 'RIGHT': 5}
 var player_position = lane.CENTER
 
@@ -46,7 +49,12 @@ func _physics_process(delta):
 		$DustTrail.emitting = false
 	else:
 		$DustTrail.emitting = true
-
+	
+	# set player in perpetual motion
+	#position.z -= 0.1
+	delta_speed += DELTA_SPEED
+	velocity.z = -1 * (SPEED + delta_speed) 
+	
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -68,7 +76,7 @@ func _physics_process(delta):
 		if shield_in_collection and !shield_is_up:
 			put_up_shield()
 		# for testing purposes
-		# position.z += 0.5
+		#position.z += 0.5
 	move_and_slide()
 
 # Movement

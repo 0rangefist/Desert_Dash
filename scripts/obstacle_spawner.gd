@@ -9,6 +9,7 @@ extends Node3D
 @export_range(0.0, 1.0, 0.1) var wall_probability: float  = 0.1
 @export_range(0.0, 1.0, 0.1) var well_probability: float  = 0.1
 
+
 var buildings: PackedScene
 var cacti: PackedScene
 var car_wrecks: PackedScene

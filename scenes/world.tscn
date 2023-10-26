@@ -61,8 +61,7 @@ transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 35, 0, -0.144253, 0)
 skeleton = NodePath("../Ground")
 
 [node name="Ground" parent="." instance=ExtResource("4_e3hwj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.840884, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.840884, -29.7781)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.167568, -0.939525, 0.298686, 0.692661, 0.103391, 0.713815, -0.701528, 0.3265, 0.633447, -25.4428, 12.2864, 20.2081)
