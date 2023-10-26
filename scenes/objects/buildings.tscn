@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7im3sy8nfkq1"]
+
+[ext_resource type="PackedScene" uid="uid://dscfl0el4i8gi" path="res://models/building_01.glb" id="1_s8mfs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d6wfg"]
+size = Vector3(6.83686, 3.19945, 3.45546)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rm80j"]
+size = Vector3(4.39853, 3.05574, 2.87808)
+
+[node name="Buildings" type="Node3D"]
+
+[node name="Building1" type="StaticBody3D" parent="." groups=["cacti"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.176)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+shape = SubResource("BoxShape3D_d6wfg")
+
+[node name="BuildingMesh" parent="Building1" instance=ExtResource("1_s8mfs")]
+transform = Transform3D(1, 0, 0, 0, 1.49972, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Building2" type="StaticBody3D" parent="." groups=["cacti"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.176)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38201, 0)
+shape = SubResource("BoxShape3D_rm80j")
+
+[node name="BuildingMesh" parent="Building2" instance=ExtResource("1_s8mfs")]
+transform = Transform3D(0.608059, 0, 0, 0, 1.49972, 0, 0, 0, 1, 0, 0, 0)

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 # controls
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 7
 const REBOUND_AMT = 1  # the distance to rebound
 const MOVE_DURATION = 0.1  # time taken to move left/right
 var lane = { 'LEFT': -5, 'CENTER': 0, 'RIGHT': 5}

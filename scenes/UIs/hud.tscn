@@ -41,6 +41,18 @@ offset_right = 96.0
 offset_bottom = 47.0
 text = "Coins: 0"
 
+[node name="ScoreTime" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_top = 21.0
+offset_right = -33.0
+offset_bottom = 47.0
+grow_horizontal = 0
+text = "Time: 00:00"
+
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(53, 66)
@@ -62,13 +74,5 @@ value = 30.0
 show_percentage = false
 
 [node name="ProgressTimer" type="Timer" parent="ShieldSprite"]
-
-[node name="ScoreTime" type="Label" parent="."]
-layout_mode = 0
-offset_left = 339.0
-offset_top = 21.0
-offset_right = 432.0
-offset_bottom = 47.0
-text = "Time: 00:00"
 
 [connection signal="timeout" from="ShieldSprite/ProgressTimer" to="." method="_on_progress_timer_timeout"]

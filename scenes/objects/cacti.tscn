@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1yecbc1wfx83"]
+
+[ext_resource type="PackedScene" uid="uid://dyqlc60wj575u" path="res://models/cactus_01.glb" id="1_26fth"]
+[ext_resource type="PackedScene" uid="uid://d3tt4q7bk7omo" path="res://models/cactus_02.glb" id="2_2guvq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c8nma"]
+height = 1.80825
+radius = 0.161859
+
+[node name="Cacti" type="Node3D"]
+
+[node name="Cactus1" type="StaticBody3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.225, 0)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CactusMesh" parent="Cactus1" instance=ExtResource("1_26fth")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cactus1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0239739, -0.170253, 0)
+shape = SubResource("CylinderShape3D_c8nma")
+
+[node name="Cactus2" type="StaticBody3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.95, 0)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CactusMesh" parent="Cactus2" instance=ExtResource("2_2guvq")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cactus2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0477535, 0)
+shape = SubResource("CylinderShape3D_c8nma")

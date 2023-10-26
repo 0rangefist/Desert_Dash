@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://gwp4nxh4arvs"]
+
+[ext_resource type="Script" path="res://scripts/obstacle_spawner.gd" id="1_pdgsu"]
+[ext_resource type="Script" path="res://scripts/misc/marker.gd" id="2_2wb0p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2xe0f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hxrg"]
+albedo_color = Color(0.466667, 0, 0.470588, 1)
+
+[node name="ObstacleSpawner" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("1_pdgsu")
+
+[node name="Marker" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2xe0f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2hxrg")
+script = ExtResource("2_2wb0p")
