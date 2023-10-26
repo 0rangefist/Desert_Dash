@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1yecbc1wfx83"]
+[gd_scene load_steps=6 format=3 uid="uid://b1yecbc1wfx83"]
 
 [ext_resource type="PackedScene" uid="uid://dyqlc60wj575u" path="res://models/cactus_01.glb" id="1_26fth"]
 [ext_resource type="PackedScene" uid="uid://d3tt4q7bk7omo" path="res://models/cactus_02.glb" id="2_2guvq"]
+[ext_resource type="PackedScene" uid="uid://1jnbyxr50fmp" path="res://models/cactus_03.glb" id="3_vwyhd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c8nma"]
-height = 1.80825
 radius = 0.161859
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jgf3k"]
+size = Vector3(0.703176, 0.816881, 0.132444)
 
 [node name="Cacti" type="Node3D"]
 
-[node name="Cactus1" type="StaticBody3D" parent="."]
+[node name="Cactus1" type="StaticBody3D" parent="." groups=["cacti"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.225, 0)
 collision_layer = 4
 collision_mask = 7
@@ -20,7 +23,7 @@ collision_mask = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0239739, -0.170253, 0)
 shape = SubResource("CylinderShape3D_c8nma")
 
-[node name="Cactus2" type="StaticBody3D" parent="."]
+[node name="Cactus2" type="StaticBody3D" parent="." groups=["cacti"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.95, 0)
 collision_layer = 4
 collision_mask = 7
@@ -30,3 +33,15 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cactus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0477535, 0)
 shape = SubResource("CylinderShape3D_c8nma")
+
+[node name="Cactus3" type="StaticBody3D" parent="." groups=["cacti"]]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.33357, 0)
+collision_layer = 4
+collision_mask = 7
+
+[node name="cactus_03" parent="Cactus3" instance=ExtResource("3_vwyhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.782132, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cactus3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.066227, -0.368302, 0)
+shape = SubResource("BoxShape3D_jgf3k")
