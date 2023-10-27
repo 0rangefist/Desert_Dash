@@ -21,6 +21,12 @@ var magnet_on_timer = Timer.new()
 # collectables
 var coin_count = 0
 
+# damage system
+var in_target_proximity = false
+var ammo = 10
+@onready var cross_hairs = $CrossHairs
+@onready var raycast = $RayCast3D
+
 # signals
 signal coin_collected
 signal shield_collected
@@ -37,10 +43,9 @@ const LAYER = {'PLAYER': 1, 'GROUND': 2, 'OBSTACLES': 3, 'COLLECTIBLES': 4}
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var total_gameplay_time = 0
-@onready var raycast = $RayCast3D
 
-func _on_ready():
-	pass
+
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -77,6 +82,9 @@ func _physics_process(delta):
 			put_up_shield()
 		# for testing purposes
 		#position.z += 0.5
+	# try to engage weapon aim if target is reachable by bullet
+	if in_target_proximity and raycast.is_colliding():
+		lock_weapon_aim()
 	move_and_slide()
 
 # Movement
@@ -116,10 +124,16 @@ func move_player_right():
 		#tween.tween_interval(0.1)
 		tween.tween_property(self, "position:x", lane.RIGHT, MOVE_DURATION)
 
+func lock_weapon_aim():
+	if ammo > 0:
+		var target = raycast.get_collider()
+		# engage the crosshairs
+		cross_hairs.engage() # turns crosshairs from disengaged(red) to engaged(green)
+
 func fire_weapon():
 	# for testing purposes
 	# velocity.y = JUMP_VELOCITY
-	if raycast.is_colliding():
+	if raycast.is_colliding() and ammo > 0:
 		var target = raycast.get_collider()
 		
 		if target != null and target.is_in_group("cacti"):
