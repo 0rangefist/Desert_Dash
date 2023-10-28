@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d38uvdeticvff"
-path.s3tc="res://.godot/imported/crosshair.png-1281ee32d6777347e0f43a202c603c1b.s3tc.ctex"
+uid="uid://boxim8if2lpv5"
+path.s3tc="res://.godot/imported/jet_engine_low2_1.png-23a2362af404b4368ec605b7a49f10db.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://sprites/crosshair.png"
-dest_files=["res://.godot/imported/crosshair.png-1281ee32d6777347e0f43a202c603c1b.s3tc.ctex"]
+source_file="res://models/jet_engine_low2_1.png"
+dest_files=["res://.godot/imported/jet_engine_low2_1.png-23a2362af404b4368ec605b7a49f10db.s3tc.ctex"]
 
 [params]
 
@@ -24,8 +25,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=8
+roughness/src_normal="res://models/jet_engine_low2_2.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

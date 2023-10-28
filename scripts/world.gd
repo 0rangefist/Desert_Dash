@@ -36,13 +36,13 @@ func _process(_delta):
 		
 		var first_unit = visible_units[0]
 		var second_unit = visible_units[1]
-		print("PLAYER GLOBAL POS: " + str($Player.global_position.z))
-		print("UNIT GLOBAL POS: " + str(visible_units[0].global_position.z))
+		#print("PLAYER GLOBAL POS: " + str($Player.global_position.z))
+		#print("UNIT GLOBAL POS: " + str(visible_units[0].global_position.z))
 		# if the moving player passes the origin of the 2nd visible unit,
 		# the first unit is erased, and a new unit appended to visible_units array
 		if $Player.global_position.z < nearest_position:
-			print("LOOP PLAYER GLOBAL POS: " + str($Player.global_position.z))
-			print("LOOP 2nd Unit GLOBAL POS: " + str(second_unit.global_position.z))
+			#print("LOOP PLAYER GLOBAL POS: " + str($Player.global_position.z))
+			#print("LOOP 2nd Unit GLOBAL POS: " + str(second_unit.global_position.z))
 			# instatiate a new unit
 			var new_unit = get_random_unit_instance(level_loader.level_units)
 			# add the new unit to the scene

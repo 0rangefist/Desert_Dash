@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://0q861r3s86yf"]
+[gd_scene load_steps=9 format=3 uid="uid://0q861r3s86yf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fmbye"]
 [ext_resource type="PackedScene" uid="uid://4pq1p6blrsj6" path="res://models/monkey_head1.blend" id="2_i7sfk"]
 [ext_resource type="PackedScene" uid="uid://cxh36txje42l6" path="res://models/jeep.gltf" id="3_7lxgy"]
 [ext_resource type="PackedScene" uid="uid://cwy8lvf7s4umh" path="res://scenes/swipe_detector.tscn" id="3_h0uno"]
 [ext_resource type="PackedScene" uid="uid://ugvxg1qeo1xp" path="res://scenes/misc/dust_trail.tscn" id="5_6mxia"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_jswla"]
-radius = 1.30022
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_la6fk"]
 size = Vector3(25, 30, 20)
@@ -49,11 +46,6 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183909, -0.361688)
 shape = SubResource("BoxShape3D_c2kmu")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.718422, -0.454886)
-target_position = Vector3(0, 0, -10)
-collision_mask = 4
 
 [node name="TireTrackLeft" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494433, -0.922135, 0.118)

@@ -1,8 +1,14 @@
 extends Node3D
 
-@export_range(0.0, 1.0, 0.1) var coin_probability: float  = 0.6
-@export_range(0.0, 1.0, 0.1) var magnet_probability: float  = 0.2
-@export_range(0.0, 1.0, 0.1) var shield_probability: float  = 0.1
+#@export_range(0.0, 1.0, 0.1) var coin_probability: float  = 0.6
+#@export_range(0.0, 1.0, 0.1) var magnet_probability: float  = 0.2
+#@export_range(0.0, 1.0, 0.1) var shield_probability: float  = 0.1
+#@export_range(0.0, 1.0, 0.1) var hover_probability: float  = 0.1
+
+@export_range(0.0, 1.0, 0.1) var coin_probability: float  = 0
+@export_range(0.0, 1.0, 0.1) var magnet_probability: float  = 0
+@export_range(0.0, 1.0, 0.1) var shield_probability: float  = 0.5
+@export_range(0.0, 1.0, 0.1) var hover_probability: float  = 0.5
 # 0.1 for no_spawn probability
 
 # we could spawn 3, 4 ... or 10 coins
@@ -13,6 +19,7 @@ extends Node3D
 var coin: PackedScene
 var magnet: PackedScene
 var shield: PackedScene
+var hover: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +27,7 @@ func _ready():
 	coin = preload("res://scenes/objects/coin.tscn")
 	magnet = preload("res://scenes/objects/magnet.tscn")
 	shield = preload("res://scenes/objects/shield.tscn")
+	hover = preload("res://scenes/objects/hover.tscn")
 	
 	# randomly spawn a collectible (solo or group)
 	spawn_collectibles()
@@ -34,6 +42,8 @@ func spawn_collectibles():
 		spawn_collectible(magnet)
 	elif rand_num < coin_probability + magnet_probability + shield_probability:
 		spawn_collectible(shield)
+	elif rand_num < coin_probability + magnet_probability + shield_probability + hover_probability:
+		spawn_collectible(hover)
 		
 func spawn_collectible(collectible: PackedScene):
 	# coins are special and are spawned in multiples
@@ -56,7 +66,7 @@ func spawn_collectible(collectible: PackedScene):
 				# setup position for next coin to the right
 				pos_right -= coin_spacing
 				pos_is_left = true
-	else: # shields and magnets are spawned in singles
+	else: # shields, magnets & hover packs are spawned in singles
 		var instance = collectible.instantiate()
 		add_child(instance)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=9 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
@@ -7,9 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="4_uwh34"]
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 [ext_resource type="Texture2D" uid="uid://d1cgyfvv3qoi5" path="res://textures/tire_track_ao.png" id="5_l6ard"]
-[ext_resource type="PackedScene" uid="uid://boc8t8m3q6gtt" path="res://scenes/objects/coin.tscn" id="6_jo41o"]
-[ext_resource type="PackedScene" uid="uid://btfrppo0ck43k" path="res://scenes/objects/magnet.tscn" id="7_0d433"]
-[ext_resource type="PackedScene" uid="uid://b0p2gkjws2g5v" path="res://scenes/objects/shield.tscn" id="8_jadx2"]
 [ext_resource type="Texture2D" uid="uid://suw50gew01oi" path="res://textures/tire_track.png" id="14_0okxj"]
 
 [node name="World" type="Node"]
@@ -72,24 +69,20 @@ shadow_opacity = 0.54
 shadow_blur = 3.443
 
 [node name="HUD" parent="." instance=ExtResource("5_hhwul")]
-
-[node name="Coin" parent="." instance=ExtResource("6_jo41o")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, -0.609723, 1.51509, 11.9354)
-visible = false
-
-[node name="Magnet" parent="." instance=ExtResource("7_0d433")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 2.74179, 1.50822, 6.85209)
-visible = false
-
-[node name="Shield" parent="." instance=ExtResource("8_jadx2")]
-transform = Transform3D(1.92729, 0, 0, 0, 1.92729, 0, 0, 0, 1.92729, 0.649789, 1.35298, 10.051)
-visible = false
+anchors_preset = 15
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="ScoreTimer" type="Timer" parent="."]
 autostart = true
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
-[connection signal="gameplay_one_second_elapsed" from="Player" to="HUD" method="_on_gameplay_one_second_elapsed"]
+[connection signal="hover_collected" from="Player" to="HUD" method="_on_player_hover_collected"]
+[connection signal="hover_dropped" from="Player" to="HUD" method="_on_player_hover_dropped"]
+[connection signal="hover_on" from="Player" to="HUD" method="_on_player_hover_on"]
+[connection signal="score_one_second_elapsed" from="Player" to="HUD" method="_on_player_score_one_second_elapsed"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]
 [connection signal="shield_dropped" from="Player" to="HUD" method="_on_player_shield_dropped"]
 [connection signal="shield_up" from="Player" to="HUD" method="_on_player_shield_up"]

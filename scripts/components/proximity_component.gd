@@ -13,14 +13,18 @@ func _on_body_entered(body):
 			var target = get_parent()
 			player.raycast.look_at(target.global_position)
 			# turn on target recticle
-			player.cross_hairs.on()
+			player.recticle.on()
 			# aim the recticle at the target as well
-			var plane = load("res://scenes/objects/magnet.tscn").instantiate()
-			add_child(plane)
-			plane.global_position =  target.global_position
 			
+			#var plane = load("res://scenes/components/recticle_component.tscn").instantiate()
+			#add_child(plane)
+			#plane.on()
 			var pos2D = get_viewport().get_camera_3d().unproject_position(target.global_position)
-			player.cross_hairs.position = pos2D
+			#plane.global_position = pos2D
+			player.recticle.global_position = pos2D
+			
+			#var pos2D = get_viewport().get_camera_3d().unproject_position(target.global_position)
+			#player.recticle.global_position = target.global_position
 			
 
 
@@ -31,5 +35,5 @@ func _on_body_exited(body):
 		# turn of player.in_target_proximity
 		player.in_target_proximity = false
 		# turn off target recticle
-		player.cross_hairs.off()
-		player.cross_hairs.disengage()
+		player.recticle.off()
+		player.recticle.disengage()
