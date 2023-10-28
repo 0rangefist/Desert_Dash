@@ -1,14 +1,14 @@
 extends Node
 
-var MAX_VISIBLE_UNITS = 5  # Maximum number of visible level units
-var UNIT_SPEED = 15.0  # Speed at which units move
+var MAX_VISIBLE_UNITS = 3  # Maximum number of visible level units(not less than 2)
 var UNIT_LENGTH = 35.0  # Length of each unit
 
-var leftmost_position = 0.0  # Initial leftmost position
-var rightmost_position = 0.0  # Initial rightmost position
+var player_start_pos = 0.0 
+var nearest_position = 0.0 # previous unit is del when player passes this point
+var farthest_position = 0.0  # newe unit is added after this point
 
 # Store the instantiated level unit  in an array
-var level_units = []
+var visible_units = []
 
 var level_loader = LevelLoader.new()
 var daily_challenge
@@ -17,59 +17,48 @@ var daily_challenge
 func _ready():
 	daily_challenge = await DailyChallenge.new()
 	level_loader.load_level("desert")
+	# setup the nearest pos to be origin of the 2nd unit
+	nearest_position -= UNIT_LENGTH
 	# randomly instantiate the first visible set of units
 	for cycle in range(MAX_VISIBLE_UNITS):
 		var unit = get_random_unit_instance(level_loader.level_units)
+		# add the unit to the scene
 		add_child(unit)
-		unit.global_transform.origin.z = rightmost_position
-		# update value of rightmost position
-		rightmost_position -= UNIT_LENGTH
-		level_units.append(unit)
+		# position the unit at the furthest position
+		unit.global_transform.origin.z = farthest_position
+		# update value of farthest position
+		farthest_position -= UNIT_LENGTH
+		# add the unit to the tracking array
+		visible_units.append(unit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-#	if Input.is_action_just_pressed("destroy"):
-#		var node = $RoofSupport/Destruction
-#		var roof = $Roof
-#		var building = $Building
-#		if node:
-#			print("DESTROY: " + node.name)
-#			node.destroy()
-#			building.set_collision_layer_value(3, false)
-#			building.set_collision_layer_value(5, true)
-#		if roof:
-#			roof.apply_impulse(Vector3(0, 50, -500))
-#			await get_tree().create_timer(1.0).timeout
-#			roof.set_lock_rotation_enabled(true)
-#			#roof.axis_lock_linear_z = false
-#			#roof.set_axis_lock(4, false)
-#			#roof.set_axis_lock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Z, false)
-#			#roof.set_axis_lock(2, true)
-#
-#			#roof.rotate_x(deg_to_rad(25))
-#	if Input.is_action_just_pressed("shatter"):
-#		var node = $Beam/Destruction
-#		if node:
-#			print("SHATTER: " + node.name)
-#			node.destroy()
-	UNIT_SPEED += 0.0001
-	var unit_velocity = Vector3(0, 0, UNIT_SPEED)
-	
-	for unit in level_units:
-		unit.global_translate(unit_velocity * delta)
+func _process(_delta):
 		
-		# check if unit has moved off screen
-		if unit.global_transform.origin.z - UNIT_LENGTH > leftmost_position:
-			# instatiate a new one
+		var first_unit = visible_units[0]
+		var second_unit = visible_units[1]
+		#print("PLAYER GLOBAL POS: " + str($Player.global_position.z))
+		#print("UNIT GLOBAL POS: " + str(visible_units[0].global_position.z))
+		# if the moving player passes the origin of the 2nd visible unit,
+		# the first unit is erased, and a new unit appended to visible_units array
+		if $Player.global_position.z < nearest_position:
+			#print("LOOP PLAYER GLOBAL POS: " + str($Player.global_position.z))
+			#print("LOOP 2nd Unit GLOBAL POS: " + str(second_unit.global_position.z))
+			# instatiate a new unit
 			var new_unit = get_random_unit_instance(level_loader.level_units)
+			# add the new unit to the scene
 			add_child(new_unit)
-			# move the new unit instance to the rightmost position
-			new_unit.global_transform.origin.z = rightmost_position + UNIT_LENGTH
-			# remove the old unit from the tracking array
-			level_units.erase(unit)
+			# move the new unit instance to the farthest position
+			new_unit.global_transform.origin.z = farthest_position
+			# delete the first unit from the tracking array
+			visible_units.erase(first_unit)
 			# add the new unit to the tracking array
-			level_units.append(new_unit)
-			unit.queue_free() # free the unit
+			visible_units.append(new_unit)
+			# free the first unit from the scene
+			first_unit.queue_free() 
+			# update the nearest & farthest positions for use in the next frame
+			nearest_position -= UNIT_LENGTH
+			farthest_position -= UNIT_LENGTH
+
 
 func get_random_unit_instance(unit_list):
 	# Randomly select an instantiate unit scene from list
@@ -82,7 +71,7 @@ static func _random_direction() -> Vector3:
 #	level_loader.load_level("desert")  # Replace "Level1" with the desired level name
 #
 #	# Log the loaded unit scenes
-#	for unit_scene in level_loader.level_units:
+#	for unit_scene in level_loader.visible_units:
 #		# create an instance
 #		var unit = unit_scene.instantiate()
 #		print("Loaded unit instance:", unit.visible)

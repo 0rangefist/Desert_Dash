@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://yubdnffms4vg"]
+
+[ext_resource type="PackedScene" uid="uid://cinckvwckkvij" path="res://models/jet_engine_low2.glb" id="1_dshfi"]
+[ext_resource type="Script" path="res://scripts/objects/hover.gd" id="1_mn24h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j7sa1"]
+radius = 0.28824
+
+[node name="Hover" type="Area3D"]
+transform = Transform3D(1.92, 0, 0, 0, 1.92, 0, 0, 0, 1.92, 0, 0, 0)
+script = ExtResource("1_mn24h")
+
+[node name="Mesh" parent="." instance=ExtResource("1_dshfi")]
+transform = Transform3D(-0.007, 0, -6.11959e-10, 0, 0.007, 0, 6.11959e-10, 0, -0.007, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-3.93218e-08, 4.55328e-08, 0.520833, -7.86437e-08, -0.520833, 4.55328e-08, 0.520833, -7.86437e-08, 3.93218e-08, 0.213294, 3.64327e-08, -3.76353e-07)
+light_color = Color(0, 0.639216, 0.639216, 1)
+light_energy = 16.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_size = 1.0
+light_specular = 16.0
+spot_range = 0.699
+spot_attenuation = 1.31951
+spot_angle = 22.25
+spot_angle_attenuation = 0.0693483
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0222699, 0)
+shape = SubResource("SphereShape3D_j7sa1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33018)
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_on_player_encountered"]

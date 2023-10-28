@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://0q861r3s86yf"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_fmbye"]
+[ext_resource type="PackedScene" uid="uid://4pq1p6blrsj6" path="res://models/monkey_head1.blend" id="2_i7sfk"]
+[ext_resource type="PackedScene" uid="uid://cxh36txje42l6" path="res://models/jeep.gltf" id="3_7lxgy"]
+[ext_resource type="PackedScene" uid="uid://cwy8lvf7s4umh" path="res://scenes/swipe_detector.tscn" id="3_h0uno"]
+[ext_resource type="PackedScene" uid="uid://ugvxg1qeo1xp" path="res://scenes/misc/dust_trail.tscn" id="5_6mxia"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_la6fk"]
+size = Vector3(25, 30, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2kmu"]
+size = Vector3(1.55237, 1.65314, 2.21828)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2bykf"]
+size = Vector3(0.235014, 0.186653, 0.545501)
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 30
+script = ExtResource("1_fmbye")
+
+[node name="jeep" parent="." instance=ExtResource("3_7lxgy")]
+transform = Transform3D(0.595, 0, 1.41859e-07, 0, 0.595, 0, -1.41859e-07, 0, 0.595, 0.258684, -0.860041, -0.489529)
+
+[node name="monkey_head1" parent="." instance=ExtResource("2_i7sfk")]
+transform = Transform3D(0.999999, 0.00103874, 0.000548089, -0.00104506, 0.999931, 0.0116691, -0.00053593, -0.0116697, 0.999932, 0, 0, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.00034, -0.000915798, -0.000346983, -0.00116923, 0.816182, 0.239431, 0.00011456, 0.333387, -0.586164, -7.84439e-11, 0.0722891, -0.0407701)
+visible = false
+shape = SubResource("SphereShape3D_jswla")
+
+[node name="SwipeDetector" parent="." instance=ExtResource("3_h0uno")]
+
+[node name="MagnetBox" type="Area3D" parent="."]
+collision_mask = 8
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MagnetBox"]
+shape = SubResource("BoxShape3D_la6fk")
+
+[node name="DamageArea" type="Area3D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183909, -0.361688)
+shape = SubResource("BoxShape3D_c2kmu")
+
+[node name="TireTrackLeft" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494433, -0.922135, 0.118)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TireTrackLeft"]
+shape = SubResource("BoxShape3D_2bykf")
+
+[node name="TireTrackRight" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499, -0.922, 0.118)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TireTrackRight"]
+shape = SubResource("BoxShape3D_2bykf")
+
+[node name="DustTrail" parent="." instance=ExtResource("5_6mxia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00813991, -0.999589, 0.903068)
+emitting = false
+
+[connection signal="down_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_down_swipe"]
+[connection signal="left_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_left_swipe"]
+[connection signal="right_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_right_swipe"]
+[connection signal="up_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_up_swipe"]
+[connection signal="area_entered" from="MagnetBox" to="." method="_on_magnet_box_area_entered"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="TireTrackRight" to="." method="_on_tire_track_body_entered"]
+[connection signal="body_exited" from="TireTrackRight" to="." method="_on_tire_track_body_exited"]
