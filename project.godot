@@ -11,15 +11,19 @@ config_version=5
 [application]
 
 config/name="Desert Dash"
+run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
+boot_splash/bg_color=Color(0, 0.717647, 0.737255, 1)
+boot_splash/image="res://sprites/crosshair.png"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=4000
 
 [display]
 
 window/size/viewport_width=480
 window/size/viewport_height=600
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [input]
@@ -79,3 +83,4 @@ shatter={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -1,45 +1,75 @@
-[gd_scene load_steps=6 format=3 uid="uid://tlum2qpm2o70"]
+[gd_scene load_steps=7 format=3 uid="uid://tlum2qpm2o70"]
 
 [ext_resource type="PackedScene" uid="uid://dscfl0el4i8gi" path="res://models/building_01.glb" id="1_c0aqk"]
 [ext_resource type="PackedScene" uid="uid://dk5s46ok5qvvv" path="res://scenes/objects/roof_support.tscn" id="2_3y0wk"]
 [ext_resource type="PackedScene" uid="uid://baph6doko1bji" path="res://models/roof.glb" id="3_k18ei"]
+[ext_resource type="PackedScene" uid="uid://4lxhqqqdigp2" path="res://models/building_02.glb" id="4_6m4i2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xn7ps"]
-size = Vector3(4.76901, 3.4303, 3.582)
+size = Vector3(4.76901, 3.4303, 5.57931)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bhhkb"]
 size = Vector3(4.42231, 0.0360728, 4.32739)
 
 [node name="Buildings" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="Building3" type="Node3D" parent="."]
+[node name="Building" type="Node3D" parent="."]
 
-[node name="Building" type="StaticBody3D" parent="Building3" groups=["destructable_building"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.470158, 0.0275118, 0.16957)
+[node name="Building" type="StaticBody3D" parent="Building" groups=["destructable_building"]]
+transform = Transform3D(1.00198, 0, 0, 0, 1.00198, 0, 0, 0, 1.00198, 0.470158, 0.0275118, 0.16957)
 collision_layer = 4
 collision_mask = 23
 
-[node name="BuildingMesh" parent="Building3/Building" instance=ExtResource("1_c0aqk")]
+[node name="BuildingMesh" parent="Building/Building" instance=ExtResource("1_c0aqk")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Building3/Building"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/Building"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06063, 0)
 shape = SubResource("BoxShape3D_xn7ps")
 
-[node name="RoofSupport" parent="Building3" instance=ExtResource("2_3y0wk")]
-transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0.470158, 0.0275118, 0.515505)
+[node name="RoofSupport" parent="Building" instance=ExtResource("2_3y0wk")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0.470158, 0.0275118, -0.769175)
 
-[node name="Roof" type="StaticBody3D" parent="Building3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0.000296708, 0, -0.000296708, 1, 0.470158, 0.0620222, 0.122562)
+[node name="Roof" type="StaticBody3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1.04861, 0.000224704, 0, -0.000311131, 0.757323, 0.470158, -0.121503, 0.531965)
 collision_layer = 16
 collision_mask = 23
 axis_lock_linear_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 
-[node name="RoofMesh" parent="Building3/Roof" instance=ExtResource("3_k18ei")]
+[node name="RoofMesh" parent="Building/Roof" instance=ExtResource("3_k18ei")]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0.0235752, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Building3/Roof"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/Roof"]
 transform = Transform3D(1, 0, 0, 0, 0.994701, -0.10281, 0, 0.10281, 0.994701, -0.0120497, 2.58686, 3.76839)
 shape = SubResource("BoxShape3D_bhhkb")
+
+[node name="Building2" type="Node3D" parent="."]
+
+[node name="Building" type="StaticBody3D" parent="Building2" groups=["destructable_building"]]
+transform = Transform3D(1.00198, 0, 0, 0, 1.00198, 0, 0, 0, 1.00198, 0.470158, 0.0275118, 0.16957)
+collision_layer = 4
+collision_mask = 23
+
+[node name="BuildingMesh" parent="Building2/Building" instance=ExtResource("1_c0aqk")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building2/Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06063, 0)
+shape = SubResource("BoxShape3D_xn7ps")
+
+[node name="Building3" type="Node3D" parent="."]
+
+[node name="Building" type="StaticBody3D" parent="Building3" groups=["destructable_building"]]
+transform = Transform3D(1.00198, 0, 0, 0, 1.00198, 0, 0, 0, 1.00198, 0.470158, 0.0275118, 0.16957)
+collision_layer = 4
+collision_mask = 23
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building3/Building"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.47355, 1.06063, -0.397782)
+shape = SubResource("BoxShape3D_xn7ps")
+
+[node name="building_02" parent="Building3/Building" instance=ExtResource("4_6m4i2")]
+transform = Transform3D(1.29743, 0, 0, 0, 1.29743, 0, 0, 0, 1.29743, -0.46923, -0.0274575, -0.169235)

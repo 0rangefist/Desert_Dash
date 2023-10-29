@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://suw50gew01oi"
 path.s3tc="res://.godot/imported/tire_track.png-7dfe0d630f7935567aeeb7e985008cfa.s3tc.ctex"
+path.etc2="res://.godot/imported/tire_track.png-7dfe0d630f7935567aeeb7e985008cfa.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/tire_track.png"
-dest_files=["res://.godot/imported/tire_track.png-7dfe0d630f7935567aeeb7e985008cfa.s3tc.ctex"]
+dest_files=["res://.godot/imported/tire_track.png-7dfe0d630f7935567aeeb7e985008cfa.s3tc.ctex", "res://.godot/imported/tire_track.png-7dfe0d630f7935567aeeb7e985008cfa.etc2.ctex"]
 
 [params]
 

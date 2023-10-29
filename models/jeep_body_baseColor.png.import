@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsyng0g32la8x"
 path.s3tc="res://.godot/imported/jeep_body_baseColor.png-06a02724b0f503312277300535e381ef.s3tc.ctex"
+path.etc2="res://.godot/imported/jeep_body_baseColor.png-06a02724b0f503312277300535e381ef.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://models/jeep_body_baseColor.png"
-dest_files=["res://.godot/imported/jeep_body_baseColor.png-06a02724b0f503312277300535e381ef.s3tc.ctex"]
+dest_files=["res://.godot/imported/jeep_body_baseColor.png-06a02724b0f503312277300535e381ef.s3tc.ctex", "res://.godot/imported/jeep_body_baseColor.png-06a02724b0f503312277300535e381ef.etc2.ctex"]
 
 [params]
 
