@@ -39,32 +39,33 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-		
-		var first_unit = visible_units[0]
-		#print("PLAYER GLOBAL POS: " + str($Player.global_position.z))
-		#print("UNIT GLOBAL POS: " + str(visible_units[0].global_position.z))
-		# if the moving player passes the origin of the 2nd visible unit,
-		# the first unit is erased, and a new unit appended to visible_units array
-		if $Player.global_position.z < nearest_position:
-			#print("LOOP PLAYER GLOBAL POS: " + str($Player.global_position.z))
-			#print("LOOP 2nd Unit GLOBAL POS: " + str(second_unit.global_position.z))
-			# instatiate a new unit
-			#var new_unit = get_random_unit_instance(level_loader.level_units)
-			var new_unit = get_random_unit_instance(level_units)
-			# add the new unit to the scene
-			add_child(new_unit)
-			# move the new unit instance to the farthest position
-			new_unit.global_transform.origin.z = farthest_position
-			# delete the first unit from the tracking array
-			visible_units.erase(first_unit)
-			# add the new unit to the tracking array
-			visible_units.append(new_unit)
-			# free the first unit from the scene
-			first_unit.queue_free() 
-			# update the nearest & farthest positions for use in the next frame
-			nearest_position -= UNIT_LENGTH
-			farthest_position -= UNIT_LENGTH
+	populate_level()
 
+func populate_level():
+	var first_unit = visible_units[0]
+	#print("PLAYER GLOBAL POS: " + str($Player.global_position.z))
+	#print("UNIT GLOBAL POS: " + str(visible_units[0].global_position.z))
+	# if the moving player passes the origin of the 2nd visible unit,
+	# the first unit is erased, and a new unit appended to visible_units array
+	if $Player.global_position.z < nearest_position:
+		#print("LOOP PLAYER GLOBAL POS: " + str($Player.global_position.z))
+		#print("LOOP 2nd Unit GLOBAL POS: " + str(second_unit.global_position.z))
+		# instatiate a new unit
+		#var new_unit = get_random_unit_instance(level_loader.level_units)
+		var new_unit = get_random_unit_instance(level_units)
+		# add the new unit to the scene
+		add_child(new_unit)
+		# move the new unit instance to the farthest position
+		new_unit.global_transform.origin.z = farthest_position
+		# delete the first unit from the tracking array
+		visible_units.erase(first_unit)
+		# add the new unit to the tracking array
+		visible_units.append(new_unit)
+		# free the first unit from the scene
+		first_unit.queue_free() 
+		# update the nearest & farthest positions for use in the next frame
+		nearest_position -= UNIT_LENGTH
+		farthest_position -= UNIT_LENGTH
 
 func get_random_unit_instance(unit_list):
 	# Randomly select an instantiate unit scene from list

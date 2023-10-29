@@ -48,7 +48,19 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Total time the game has been running in seconds
 var total_score = 0
 
-
+func _ready():
+	# timer for hover on starts
+	hover_on_timer.timeout.connect(_on_hover_on_timer_timeout)
+	add_child(hover_on_timer)
+	hover_on_timer.wait_time = HOVER_ON_TIME
+	# timer for magnet ability starts
+	magnet_on_timer.timeout.connect(_on_magnet_on_timer_timeout)
+	add_child(magnet_on_timer)
+	magnet_on_timer.wait_time = MAGNET_ON_TIME
+	# timer for shield effect (collision off) starts
+	shield_up_timer.timeout.connect(_on_shield_up_timer_timeout)
+	add_child(shield_up_timer)
+	shield_up_timer.wait_time = SHIELD_UP_TIME
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -138,9 +150,11 @@ func hover():
 	if hover_in_collection:
 		# dispalce the player upward if the hover pack is on
 		if hover_is_on and position.y < 7:
+			$HoverSound.play()
 			velocity.y = HOVER_VELOCITY
 		# if hover pack isn't already on, turn it on & displace player
 		elif !hover_is_on:
+			$HoverSound.play()
 			turn_on_hover()
 			velocity.y = HOVER_VELOCITY
 
@@ -156,10 +170,6 @@ func collect_magnet():
 	magnet_collected.emit()
 	# turn on magnet
 	$MagnetBox.monitoring = true
-	# timer for magnet ability starts
-	magnet_on_timer.timeout.connect(_on_magnet_on_timer_timeout)
-	add_child(magnet_on_timer)
-	magnet_on_timer.wait_time = MAGNET_ON_TIME
 	magnet_on_timer.start()
 
 func _on_magnet_on_timer_timeout():
@@ -188,17 +198,13 @@ func collect_shield():
 		put_up_shield()
 
 func put_up_shield():
+	$ShieldSound.play()
 	shield_is_up = true
 	print("PLAYER PUT UP A SHIELD")
 	# disable collision with obstacles
 	set_collision_mask_value(LAYER.OBSTACLES, false)
 	# signal emitted to HUD to display shield up time
 	shield_up.emit(SHIELD_UP_TIME)
-	# timer for shield effect (collision off) starts
-	#await get_tree().create_timer(SHIELD_UP_TIME).timeout
-	shield_up_timer.timeout.connect(_on_shield_up_timer_timeout)
-	add_child(shield_up_timer)
-	shield_up_timer.wait_time = SHIELD_UP_TIME
 	shield_up_timer.start()
 
 func _on_shield_up_timer_timeout():
@@ -228,10 +234,6 @@ func turn_on_hover():
 	print("PLAYER TURNED ON HOVER")
 	# signal emitted to HUD to display hover on time
 	hover_on.emit(HOVER_ON_TIME)
-	# timer for hover on starts
-	hover_on_timer.timeout.connect(_on_hover_on_timer_timeout)
-	add_child(hover_on_timer)
-	hover_on_timer.wait_time = HOVER_ON_TIME
 	hover_on_timer.start()
 
 func _on_hover_on_timer_timeout():

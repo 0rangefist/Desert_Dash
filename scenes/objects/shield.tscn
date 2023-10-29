@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0p2gkjws2g5v"]
+[gd_scene load_steps=5 format=3 uid="uid://b0p2gkjws2g5v"]
 
 [ext_resource type="Script" path="res://scripts/objects/shield.gd" id="1_w6crs"]
 [ext_resource type="PackedScene" uid="uid://bac0bp1efbumx" path="res://models/shield.blend" id="2_ihfhc"]
+[ext_resource type="AudioStream" uid="uid://dloi63uu1lavq" path="res://sounds/sfx/collect_item.wav" id="3_f71q1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_61e2j"]
 radius = 0.277955
@@ -18,8 +19,9 @@ script = ExtResource("1_w6crs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0222699, 0)
 shape = SubResource("SphereShape3D_61e2j")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33018)
-visible = false
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f71q1")
+volume_db = 1.5
+pitch_scale = 2.5
 
 [connection signal="body_entered" from="." to="." method="_on_player_encountered"]
