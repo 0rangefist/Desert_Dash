@@ -14,9 +14,7 @@ config/name="Desert Dash"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/bg_color=Color(0, 0.717647, 0.737255, 1)
-boot_splash/image="res://sprites/crosshair.png"
 config/icon="res://icon.svg"
-boot_splash/minimum_display_time=4000
 
 [display]
 
@@ -82,5 +80,32 @@ shatter={
 
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+lights_and_shadows/directional_shadow/size=1024
+lights_and_shadows/directional_shadow/size.mobile=1024
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
+reflections/sky_reflections/roughness_layers=2
+reflections/sky_reflections/ggx_samples=8
+reflections/sky_reflections/ggx_samples.mobile=8
+reflections/reflection_atlas/reflection_size=64
+reflections/reflection_atlas/reflection_size.mobile=64
+reflections/reflection_atlas/reflection_count=32
+global_illumination/gi/use_half_resolution=true
+shading/overrides/force_vertex_shading=true
+shading/overrides/force_lambert_over_burley=true
+textures/default_filters/anisotropic_filtering_level=0
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+camera/depth_of_field/depth_of_field_bokeh_quality=0
+environment/ssao/quality=0
+environment/ssao/blur_passes=1
+environment/ssil/quality=0
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+scaling_3d/scale=0.5
+environment/glow/upscale_mode=0
+environment/screen_space_reflection/roughness_quality=0
+environment/subsurface_scattering/subsurface_scattering_quality=0
+mesh_lod/lod_change/threshold_pixels=2.0
+lights_and_shadows/positional_shadow/atlas_size=1024
+lights_and_shadows/positional_shadow/atlas_size.mobile=1024

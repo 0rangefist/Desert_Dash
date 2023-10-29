@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://yubdnffms4vg"]
+[gd_scene load_steps=5 format=3 uid="uid://yubdnffms4vg"]
 
 [ext_resource type="PackedScene" uid="uid://cinckvwckkvij" path="res://models/jet_engine_low2.glb" id="1_dshfi"]
 [ext_resource type="Script" path="res://scripts/objects/hover.gd" id="1_mn24h"]
+[ext_resource type="AudioStream" uid="uid://dloi63uu1lavq" path="res://sounds/sfx/collect_item.wav" id="3_sqy6r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j7sa1"]
 radius = 0.28824
@@ -17,8 +18,9 @@ transform = Transform3D(-0.007, 0, -6.11959e-10, 0, 0.007, 0, 6.11959e-10, 0, -0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0222699, 0)
 shape = SubResource("SphereShape3D_j7sa1")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33018)
-visible = false
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sqy6r")
+volume_db = 1.5
+pitch_scale = 2.5
 
 [connection signal="body_entered" from="." to="." method="_on_player_encountered"]

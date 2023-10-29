@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=11 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="4_uwh34"]
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 [ext_resource type="Texture2D" uid="uid://d1cgyfvv3qoi5" path="res://textures/tire_track_ao.png" id="5_l6ard"]
+[ext_resource type="AudioStream" uid="uid://cidfrfy5ittq8" path="res://sounds/music/music.mp3" id="10_2p6bk"]
 [ext_resource type="Texture2D" uid="uid://suw50gew01oi" path="res://textures/tire_track.png" id="14_0okxj"]
 
 [node name="World" type="Node"]
@@ -79,6 +80,11 @@ size_flags_vertical = 0
 
 [node name="ScoreTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_2p6bk")
+volume_db = -2.0
+autoplay = true
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
 [connection signal="hover_collected" from="Player" to="HUD" method="_on_player_hover_collected"]

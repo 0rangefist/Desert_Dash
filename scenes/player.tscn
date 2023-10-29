@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://0q861r3s86yf"]
+[gd_scene load_steps=11 format=3 uid="uid://0q861r3s86yf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fmbye"]
 [ext_resource type="PackedScene" uid="uid://cxh36txje42l6" path="res://models/jeep.gltf" id="3_7lxgy"]
 [ext_resource type="PackedScene" uid="uid://cwy8lvf7s4umh" path="res://scenes/swipe_detector.tscn" id="3_h0uno"]
 [ext_resource type="PackedScene" uid="uid://ugvxg1qeo1xp" path="res://scenes/misc/dust_trail.tscn" id="5_6mxia"]
+[ext_resource type="AudioStream" uid="uid://bxleoaqy3q60b" path="res://sounds/sfx/use_hover.wav" id="5_b1kcl"]
+[ext_resource type="AudioStream" uid="uid://b66udxh1y37p0" path="res://sounds/sfx/activate_shield.mp3" id="6_0ygnl"]
+[ext_resource type="AudioStream" uid="uid://cgytg2kjd8uri" path="res://sounds/sfx/car_engine_loop.mp3" id="7_dfnes"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jswla"]
 radius = 1.30022
@@ -47,6 +50,20 @@ shape = SubResource("BoxShape3D_c2kmu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00813991, -0.999589, 0.903068)
 visible = false
 emitting = false
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b1kcl")
+volume_db = -4.0
+pitch_scale = 0.67
+
+[node name="ShieldSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0ygnl")
+volume_db = 1.0
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dfnes")
+volume_db = -12.0
+pitch_scale = 1.45
 
 [connection signal="down_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_down_swipe"]
 [connection signal="left_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_left_swipe"]
