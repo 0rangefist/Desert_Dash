@@ -1,6 +1,6 @@
 extends Camera2D
 
-var swipe_length =  100
+var swipe_length =  0.05
 var start_positiion
 var current_position
 var swiping = false
@@ -29,7 +29,7 @@ func _process(_delta):
 			print("Swipe Current Pos: ", current_position)
 			# calculate if swipe is long enough
 			# to actually be considered a swipe
-			if current_position.distance_to(start_positiion) >= 100:
+			if current_position.distance_to(start_positiion) >= swipe_length:
 				print("Swipe Happened!")
 				# get the vector that represents length and direction of swipe
 				var swipe_vector = current_position - start_positiion

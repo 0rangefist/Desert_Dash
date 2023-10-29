@@ -56,7 +56,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 		$DustTrail.emitting = false
 	else:
-		$DustTrail.emitting = true
+		$DustTrail.emitting = false
 	
 	# set player in perpetual motion
 	#position.z -= 0.1

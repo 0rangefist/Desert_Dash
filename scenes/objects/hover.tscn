@@ -13,19 +13,6 @@ script = ExtResource("1_mn24h")
 [node name="Mesh" parent="." instance=ExtResource("1_dshfi")]
 transform = Transform3D(-0.007, 0, -6.11959e-10, 0, 0.007, 0, 6.11959e-10, 0, -0.007, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(-3.93218e-08, 4.55328e-08, 0.520833, -7.86437e-08, -0.520833, 4.55328e-08, 0.520833, -7.86437e-08, 3.93218e-08, 0.213294, 3.64327e-08, -3.76353e-07)
-light_color = Color(0, 0.639216, 0.639216, 1)
-light_energy = 16.0
-light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.0
-light_size = 1.0
-light_specular = 16.0
-spot_range = 0.699
-spot_attenuation = 1.31951
-spot_angle = 22.25
-spot_angle_attenuation = 0.0693483
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0222699, 0)
 shape = SubResource("SphereShape3D_j7sa1")

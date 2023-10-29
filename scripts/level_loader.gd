@@ -6,7 +6,7 @@ var level_units = []
 
 const levels_path = "res://scenes/levels/"
 
-# to be determined dynamicall from subdirs in level dir
+# to be determined dynamically from subdirs in level dir
 var level_names = []
 
 func _init():
@@ -29,7 +29,7 @@ func _update_level_names():
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				print("Found a level name: " + file_name)
+				print("load level name: " + file_name)
 				level_names.append(file_name)
 			file_name = dir.get_next()
 		dir.list_dir_end()

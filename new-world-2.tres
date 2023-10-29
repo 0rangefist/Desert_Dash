@@ -45,5 +45,4 @@ fog_light_energy = 0.64
 fog_density = 0.0041
 fog_sky_affect = 0.315
 adjustment_enabled = true
-adjustment_contrast = 1.05
 adjustment_color_correction = SubResource("GradientTexture1D_tjq8u")
