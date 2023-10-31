@@ -1,10 +1,9 @@
 extends Node3D
 
 var rotation_speed = 4  # Adjust the speed of rotation
+@onready var connect_sound_signal = $Sound.finished.connect(_on_sound_playback_finished)
 
 func _ready():
-	# Connect sound signal
-	$Sound.finished.connect(_on_sound_playback_finished)
 	# Generate a random starting angle
 	var initial_rotation = randi_range(0, 4) * (0.75 * PI) 
 	rotate(Vector3.UP, initial_rotation)

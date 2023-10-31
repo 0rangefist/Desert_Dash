@@ -127,18 +127,6 @@ func mock_call_api():
 			"description": "Collect 2 shields"
 		},
 		{ 
-			"type": "destroy",
-			"target": "walls",
-			"number": 6,
-			"description": "Destroy 6 walls"
-		},
-		{ 
-			"type": "destroy",
-			"target": "cactus",
-			"number": 10,
-			"description": "Collect 10 cacti"
-		},
-		{ 
 			"type": "drive-over",
 			"target": "roofs",
 			"number": 3,

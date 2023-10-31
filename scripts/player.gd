@@ -201,7 +201,7 @@ func put_up_shield():
 	$ShieldSound.play()
 	shield_is_up = true
 	print("PLAYER PUT UP A SHIELD")
-	# disable collision with obstacles
+	#  disable collision with obstacles
 	set_collision_mask_value(LAYER.OBSTACLES, false)
 	# signal emitted to HUD to display shield up time
 	shield_up.emit(SHIELD_UP_TIME)

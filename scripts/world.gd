@@ -71,13 +71,6 @@ func get_random_unit_instance(unit_list):
 	# Randomly select an instantiate unit scene from list
 	return unit_list[randi() % unit_list.size()].instantiate()
 
-#func get_random_unit_instance(unit_list):
-#	if unit_list.size() == 0:
-#		return null  # Return null when the list is empty
-#
-#	# Generate a random index within the valid range of unit_list
-#	var random_index = randi() % unit_list.size()
-#	return unit_list[random_index].instantiate()
 
 static func _random_direction() -> Vector3:
 	return (Vector3(randf(), randf(), randf()) - Vector3.ONE / 2.0).normalized() * 2.0
