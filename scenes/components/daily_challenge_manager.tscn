@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0h772v1n8ins"]
+
+[ext_resource type="Script" path="res://scripts/daily_challenges/daily_challenge_manager.gd" id="1_8c418"]
+
+[node name="DailyChallengeManager" type="Node"]
+script = ExtResource("1_8c418")

@@ -116,20 +116,26 @@ func mock_call_api():
 		"tasks": [
 		{
 			"type": "collect",
-			"target": "coins",
-			"number": 50,
+			"object": "coins",
+			"goal": 50,
 			"description": "Collect 50 coins"
 		},
 		{ 
-			"type": "collect",
-			"target": "shields",
-			"number": 2,
-			"description": "Collect 2 shields"
+			"type": "use",
+			"object": "shields",
+			"goal": 2,
+			"description": "Use shield 2 times"
 		},
 		{ 
-			"type": "drive-over",
-			"target": "roofs",
-			"number": 3,
+			"type": "use",
+			"object": "hover",
+			"goal": 3,
+			"description": "Use hover pack 3 times"
+		},
+		{ 
+			"type": "drive-on",
+			"object": "roofs",
+			"goal": 3,
 			"description": "Drive over 10 roofs"
 		}],
 		"expiration_time" : "2023-10-12T02:34:01+00:00",

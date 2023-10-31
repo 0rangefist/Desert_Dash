@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=12 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 [ext_resource type="Texture2D" uid="uid://d1cgyfvv3qoi5" path="res://textures/tire_track_ao.png" id="5_l6ard"]
 [ext_resource type="AudioStream" uid="uid://cidfrfy5ittq8" path="res://sounds/music/music.mp3" id="10_2p6bk"]
+[ext_resource type="PackedScene" uid="uid://d0h772v1n8ins" path="res://scenes/components/daily_challenge_manager.tscn" id="11_xbitx"]
 [ext_resource type="Texture2D" uid="uid://suw50gew01oi" path="res://textures/tire_track.png" id="14_0okxj"]
 
 [node name="World" type="Node"]
@@ -86,12 +87,19 @@ stream = ExtResource("10_2p6bk")
 volume_db = -2.0
 autoplay = true
 
+[node name="DailyChallengeManager" parent="." instance=ExtResource("11_xbitx")]
+
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
+[connection signal="coin_collected" from="Player" to="DailyChallengeManager" method="_on_coin_collected"]
 [connection signal="hover_collected" from="Player" to="HUD" method="_on_player_hover_collected"]
 [connection signal="hover_dropped" from="Player" to="HUD" method="_on_player_hover_dropped"]
 [connection signal="hover_on" from="Player" to="HUD" method="_on_player_hover_on"]
+[connection signal="hover_on" from="Player" to="DailyChallengeManager" method="_on_hover_used"]
 [connection signal="score_one_second_elapsed" from="Player" to="HUD" method="_on_player_score_one_second_elapsed"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]
 [connection signal="shield_dropped" from="Player" to="HUD" method="_on_player_shield_dropped"]
 [connection signal="shield_up" from="Player" to="HUD" method="_on_player_shield_up"]
+[connection signal="shield_up" from="Player" to="DailyChallengeManager" method="_on_shield_used"]
 [connection signal="timeout" from="ScoreTimer" to="Player" method="_on_score_timer_timeout"]
+[connection signal="challenge_task_updated" from="DailyChallengeManager" to="HUD" method="_on_daily_challenge_task_updated"]
+[connection signal="task_completed" from="DailyChallengeManager" to="HUD" method="_on_daily_challenge_task_completed"]
