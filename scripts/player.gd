@@ -262,11 +262,8 @@ func detect_obstacle_collision():
 		var collider_name =  collision.get_collider().name
 		var collision_angle = collision.get_angle()
 		print("HEAVY COLLISION WITH " + collision.get_collider().name + ": " +  str(collision.get_angle()))
-		if get_real_velocity().z == 0:
-			# restart game
-			get_tree().reload_current_scene()
 		# squash cactus if collision from above
-		elif "Cactus" in collider_name and collision_angle < 1:
+		if "Cactus" in collider_name and collision_angle < 1:
 			collision.get_collider().queue_free()
 			cactus_squashed.emit()
 		# if roof driven on (collision from above of building)
@@ -283,7 +280,9 @@ func detect_obstacle_collision():
 				# add this very collider to register to avoid
 				# registering repeated collisions with same collider
 				registered_roof_colliders[collider_id] = true
-
+		else:
+				# restart game
+				get_tree().reload_current_scene()
 # keep count of gameplay time every second and notify HUD
 func _on_score_timer_timeout():
 	total_score += 1
