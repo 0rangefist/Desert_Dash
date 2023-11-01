@@ -57,23 +57,23 @@ script = ExtResource("1_py2ra")
 metadata/_edit_use_anchors_ = true
 
 [node name="CoinCount" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 2
 offset_left = 35.0
 offset_top = 21.0
 offset_right = 96.0
 offset_bottom = 47.0
+size_flags_horizontal = 0
 text = "Coins: 0"
 
 [node name="ScoreTime" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -126.0
+layout_mode = 2
+offset_left = 354.0
 offset_top = 21.0
-offset_right = -33.0
+offset_right = 442.0
 offset_bottom = 47.0
 grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 1
 text = "Time: 00:00"
 
 [node name="ShieldSprite" type="AnimatedSprite2D" parent="."]

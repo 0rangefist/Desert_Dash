@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=12 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 [ext_resource type="Texture2D" uid="uid://d1cgyfvv3qoi5" path="res://textures/tire_track_ao.png" id="5_l6ard"]
 [ext_resource type="AudioStream" uid="uid://cidfrfy5ittq8" path="res://sounds/music/music.mp3" id="10_2p6bk"]
+[ext_resource type="PackedScene" uid="uid://d0h772v1n8ins" path="res://scenes/components/daily_challenge_manager.tscn" id="11_xbitx"]
 [ext_resource type="Texture2D" uid="uid://suw50gew01oi" path="res://textures/tire_track.png" id="14_0okxj"]
 
 [node name="World" type="Node"]
@@ -18,13 +19,13 @@ script = ExtResource("1_snt1e")
 environment = ExtResource("2_vwfpf")
 
 [node name="Player" parent="." instance=ExtResource("2_3wiuu")]
-transform = Transform3D(0.65, 0, 1.1365e-07, 0, 0.65, 0, -1.1365e-07, 0, 0.65, 0, 1.37571, 15.379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37571, 15.379)
 
 [node name="CameraRig" type="Node3D" parent="Player"]
 transform = Transform3D(1, 1.7108e-08, -1.74007e-07, 0, 0.995202, 0.0978444, 1.74846e-07, -0.0978444, 0.995202, -9.27929e-07, 4.40095, 5.30713)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
-transform = Transform3D(1, -4.01922e-13, -1.08028e-13, 7.97305e-14, 0.931507, 0.363723, 1.1076e-13, -0.363723, 0.931507, -7.48675e-13, -1.72868, -3.99537)
+transform = Transform3D(1, -2.81311e-13, -3.2116e-13, 7.97305e-14, 0.931507, 0.363723, 1.1076e-13, -0.363723, 0.931507, -7.48675e-13, -1.72868, -3.99537)
 fov = 110.0
 far = 140.0
 
@@ -86,12 +87,20 @@ stream = ExtResource("10_2p6bk")
 volume_db = -2.0
 autoplay = true
 
+[node name="DailyChallengeManager" parent="." instance=ExtResource("11_xbitx")]
+
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
+[connection signal="coin_collected" from="Player" to="DailyChallengeManager" method="_on_coin_collected"]
 [connection signal="hover_collected" from="Player" to="HUD" method="_on_player_hover_collected"]
 [connection signal="hover_dropped" from="Player" to="HUD" method="_on_player_hover_dropped"]
 [connection signal="hover_on" from="Player" to="HUD" method="_on_player_hover_on"]
+[connection signal="hover_on" from="Player" to="DailyChallengeManager" method="_on_hover_used"]
+[connection signal="roof_driven_on" from="Player" to="DailyChallengeManager" method="_on_roof_driven_on"]
 [connection signal="score_one_second_elapsed" from="Player" to="HUD" method="_on_player_score_one_second_elapsed"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]
 [connection signal="shield_dropped" from="Player" to="HUD" method="_on_player_shield_dropped"]
 [connection signal="shield_up" from="Player" to="HUD" method="_on_player_shield_up"]
+[connection signal="shield_up" from="Player" to="DailyChallengeManager" method="_on_shield_used"]
 [connection signal="timeout" from="ScoreTimer" to="Player" method="_on_score_timer_timeout"]
+[connection signal="challenge_task_updated" from="DailyChallengeManager" to="HUD" method="_on_daily_challenge_task_updated"]
+[connection signal="task_completed" from="DailyChallengeManager" to="HUD" method="_on_daily_challenge_task_completed"]

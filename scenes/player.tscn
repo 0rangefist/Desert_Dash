@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0q861r3s86yf"]
+[gd_scene load_steps=10 format=3 uid="uid://0q861r3s86yf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fmbye"]
 [ext_resource type="PackedScene" uid="uid://cxh36txje42l6" path="res://models/jeep.gltf" id="3_7lxgy"]
@@ -8,14 +8,11 @@
 [ext_resource type="AudioStream" uid="uid://b66udxh1y37p0" path="res://sounds/sfx/activate_shield.mp3" id="6_0ygnl"]
 [ext_resource type="AudioStream" uid="uid://cgytg2kjd8uri" path="res://sounds/sfx/car_engine_loop.mp3" id="7_dfnes"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_jswla"]
-radius = 1.30022
+[sub_resource type="BoxShape3D" id="BoxShape3D_c2kmu"]
+size = Vector3(1.197, 1.613, 2.218)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_la6fk"]
-size = Vector3(25, 30, 20)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_c2kmu"]
-size = Vector3(1.55237, 1.65314, 2.21828)
+size = Vector3(25, 30, 10)
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 30
@@ -26,25 +23,19 @@ script = ExtResource("1_fmbye")
 transform = Transform3D(0.595, 0, 1.41859e-07, 0, 0.595, 0, -1.41859e-07, 0, 0.595, 0.258684, -0.860041, -0.489529)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1.00034, -0.000915798, -0.000346983, -0.00116923, 0.816182, 0.239431, 0.00011456, 0.333387, -0.586164, -7.84439e-11, 0.0722891, -0.0407701)
-visible = false
-shape = SubResource("SphereShape3D_jswla")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00120521, -0.214082, -0.361688)
+shape = SubResource("BoxShape3D_c2kmu")
 
 [node name="SwipeDetector" parent="." instance=ExtResource("3_h0uno")]
 
 [node name="MagnetBox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.0577)
 collision_mask = 8
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MagnetBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.03001)
 shape = SubResource("BoxShape3D_la6fk")
-
-[node name="DamageArea" type="Area3D" parent="."]
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.183909, -0.361688)
-shape = SubResource("BoxShape3D_c2kmu")
 
 [node name="DustTrail" parent="." instance=ExtResource("5_6mxia")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00813991, -0.999589, 0.903068)
@@ -70,5 +61,3 @@ pitch_scale = 1.45
 [connection signal="right_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_right_swipe"]
 [connection signal="up_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_up_swipe"]
 [connection signal="area_entered" from="MagnetBox" to="." method="_on_magnet_box_area_entered"]
-[connection signal="body_entered" from="DamageArea" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="DamageArea" to="." method="_on_area_3d_body_entered"]

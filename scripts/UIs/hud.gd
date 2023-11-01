@@ -63,3 +63,10 @@ func format_time(total_time):
 	var seconds = total_time % 60
 	return "Time: " + str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)
 
+func _on_daily_challenge_task_updated(tasks):
+	print("DAILY CHALLENGE TASKS")
+	for task in tasks:
+		print(task)
+
+func _on_daily_challenge_task_completed(task_id):
+	print("You Completed a Task: " + task_id)
