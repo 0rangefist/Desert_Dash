@@ -16,7 +16,7 @@ signal task_completed
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Get the daily challenge (from storage or remote)
-	daily_challenge =  await DailyChallenge.new()
+	daily_challenge = await DailyChallenge.new()
 	task_list =  Array()
 	# construct/update the list of tasks of the daily challenge
 	update_tasks()
@@ -66,7 +66,7 @@ func _on_hover_used(_on_time):
 	update_tasks()
 	challenge_task_updated.emit(task_list)
 	
-func _on_roof_driven():
+func _on_roof_driven_on():
 	curr_roofs_driven += 1
 	# Update task list and emit signal
 	update_tasks()

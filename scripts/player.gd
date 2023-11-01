@@ -38,6 +38,8 @@ signal hover_collected
 signal hover_on
 signal hover_dropped
 signal score_one_second_elapsed
+signal cactus_squashed
+signal roof_driven_on
 
 # collision/mask layers
 const LAYER = {'PLAYER': 1, 'GROUND': 2, 'OBSTACLES': 3, 'COLLECTIBLES': 4}
@@ -47,6 +49,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Total time the game has been running in seconds
 var total_score = 0
+
+# collisions
+var registered_roof_colliders: Dictionary = {}
+const MAX_REGISTERED_ROOF_COLLIDERS = 3
 
 func _ready():
 	# timer for hover on starts
@@ -91,6 +97,7 @@ func _physics_process(delta):
 			put_up_shield()
 		# for testing purposes
 		#position.z += 0.5
+	detect_obstacle_collision()
 	move_and_slide()
 
 # SWIPE INPUT DETECTION
@@ -179,12 +186,15 @@ func _on_magnet_on_timer_timeout():
 	magnet_on_timer.stop()
 
 func _on_magnet_box_area_entered(collectible):
+	var time_to_arrive = 0.1
+	# Calculate the expected player position when the coin arrives
+	var expected_position = global_position + (velocity * time_to_arrive)
 	if collectible.is_in_group("coins"):
 		print(collectible.name + " HAS ENTERED MAGNET BOX")
 		var tween = create_tween()
 		#tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 		#tween.tween_property(collectible, "position", 2 * Vector3.UP, 0.2 )
-		tween.tween_property(collectible, "global_position", global_position, 0.1 )
+		tween.tween_property(collectible, "global_position", expected_position, time_to_arrive)
 
 func collect_shield():
 	# collect shield if not already in collection
@@ -244,12 +254,35 @@ func _on_hover_on_timer_timeout():
 	hover_dropped.emit()
 	hover_on_timer.stop()
 
-
-# if a level obstacle collides with the player, restart game
-func _on_area_3d_body_entered(body):
-	if !shield_is_up:
-		print("Player COLLIDED WITH " + body.name)
-		get_tree().reload_current_scene()
+func detect_obstacle_collision():
+	#print("VELOCITY GO: " + str(get_real_velocity().z))
+	var collision = get_last_slide_collision()
+	# get the last non-null, non-ground collision
+	if collision and collision.get_collider() and collision.get_collider().name != "Ground" :
+		var collider_name =  collision.get_collider().name
+		var collision_angle = collision.get_angle()
+		print("HEAVY COLLISION WITH " + collision.get_collider().name + ": " +  str(collision.get_angle()))
+		if get_real_velocity().z == 0:
+			# restart game
+			get_tree().reload_current_scene()
+		# squash cactus if collision from above
+		elif "Cactus" in collider_name and collision_angle < 1:
+			collision.get_collider().queue_free()
+			cactus_squashed.emit()
+		# if roof driven on (collision from above of building)
+		elif "Building" in collider_name and collision_angle < 1:
+			# get the unique instance id of the collider object
+			var collider_id = collision.get_collider_id()
+			# if collider not in register
+			if !registered_roof_colliders.has(collider_id):
+				print("Roof Driven on!")
+				roof_driven_on.emit()
+				# empty the whole dictionary if needed
+				if registered_roof_colliders.size() == MAX_REGISTERED_ROOF_COLLIDERS:
+					registered_roof_colliders = {}
+				# add this very collider to register to avoid
+				# registering repeated collisions with same collider
+				registered_roof_colliders[collider_id] = true
 
 # keep count of gameplay time every second and notify HUD
 func _on_score_timer_timeout():

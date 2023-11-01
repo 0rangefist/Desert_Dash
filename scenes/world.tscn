@@ -19,13 +19,13 @@ script = ExtResource("1_snt1e")
 environment = ExtResource("2_vwfpf")
 
 [node name="Player" parent="." instance=ExtResource("2_3wiuu")]
-transform = Transform3D(0.65, 0, 1.1365e-07, 0, 0.65, 0, -1.1365e-07, 0, 0.65, 0, 1.37571, 15.379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37571, 15.379)
 
 [node name="CameraRig" type="Node3D" parent="Player"]
 transform = Transform3D(1, 1.7108e-08, -1.74007e-07, 0, 0.995202, 0.0978444, 1.74846e-07, -0.0978444, 0.995202, -9.27929e-07, 4.40095, 5.30713)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
-transform = Transform3D(1, -4.01922e-13, -1.08028e-13, 7.97305e-14, 0.931507, 0.363723, 1.1076e-13, -0.363723, 0.931507, -7.48675e-13, -1.72868, -3.99537)
+transform = Transform3D(1, -2.81311e-13, -3.2116e-13, 7.97305e-14, 0.931507, 0.363723, 1.1076e-13, -0.363723, 0.931507, -7.48675e-13, -1.72868, -3.99537)
 fov = 110.0
 far = 140.0
 
@@ -95,6 +95,7 @@ autoplay = true
 [connection signal="hover_dropped" from="Player" to="HUD" method="_on_player_hover_dropped"]
 [connection signal="hover_on" from="Player" to="HUD" method="_on_player_hover_on"]
 [connection signal="hover_on" from="Player" to="DailyChallengeManager" method="_on_hover_used"]
+[connection signal="roof_driven_on" from="Player" to="DailyChallengeManager" method="_on_roof_driven_on"]
 [connection signal="score_one_second_elapsed" from="Player" to="HUD" method="_on_player_score_one_second_elapsed"]
 [connection signal="shield_collected" from="Player" to="HUD" method="_on_player_shield_collected"]
 [connection signal="shield_dropped" from="Player" to="HUD" method="_on_player_shield_dropped"]
