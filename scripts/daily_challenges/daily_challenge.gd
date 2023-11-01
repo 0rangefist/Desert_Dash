@@ -5,40 +5,52 @@ var server_fetch_time = ""
 var local_fetch_time = ""
 var expiration_time = ""
 var tasks = []  # the actual challege tasks
+var endpoint = "https://0rangefist.pythonanywhere.com/api/daily-challenge"
+var http
 
-func _init():
+signal daily_challenge_fetched
+
+func get_daily_challenge():
 	self.load_from_storage()
 	if self.tasks:
 		print("Challenge loaded from storage")
 		if self.is_expired():
-			print("Loaded Challenge expired so fetch from remote")
+			print("Challenge from storage expired so trying to fetch from remote")
 			# Challenge is expired, fetch from the server (using await)
-			await self.fetch_from_remote()
-			self.save_to_storage()
+			self.fetch_from_remote()
+		else:
+			# emit signal that challenge is fetched
+			daily_challenge_fetched.emit()
 	else:
-		print("Challenge fetched from remote")
+		print("Try to fetch Challenge from remote")
 		# Data doesn't exist in local storage, fetch from the server (using await)
-		await self.fetch_from_remote()
-		self.save_to_storage()
+		self.fetch_from_remote()
 
 func fetch_from_remote():
 	# fetch data from api
-	var data
-	var server_response = self.mock_call_api()
-	# parse the json string into a dictionary
-	data = JSON.parse_string(server_response)
-	# simulate a 1 sec delay calling the api
-	#await get_tree().create_timer(2.0).timeout
-	await self.mock_delay()
+	#var data
+	http = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(_on_request_completed)
+	http.request(endpoint)
 	
-	if data:
+	
+
+func _on_request_completed(_result, response_code, _headers, body):
+	# parse the json string into a dictionary
+	var data = JSON.parse_string(body.get_string_from_utf8())
+	print("HTML BODY: " + str(data))
+	if response_code == 200 and data:
 		# extract data into instance attributes
 		tasks = data.tasks
 		server_fetch_time = data.server_fetch_time
 		local_fetch_time = Time.get_datetime_string_from_system(true)
 		expiration_time = data.expiration_time
-	print("Done fetching Challenge from remote")
 	
+		daily_challenge_fetched.emit()
+		self.save_to_storage()
+		print("Fetch from remote successful!")
+
 func save_to_storage():
 	# create a dictionary of the challenge instance
 	var challenge_dict = {
@@ -103,42 +115,3 @@ func is_expired():
 		print("Proper challenge expiration")
 		return true
 	return false
-	
-func mock_delay():
-	# Simulate a 2-second delay using a while loop
-	var start_time = Time.get_ticks_msec()
-	var delay_duration = 1000  # 2 seconds in milliseconds
-	while Time.get_ticks_msec() - start_time < delay_duration:
-		pass
-
-func mock_call_api():
-	var server_response = '{
-		"tasks": [
-		{
-			"type": "collect",
-			"object": "coins",
-			"goal": 50,
-			"description": "Collect 50 coins"
-		},
-		{ 
-			"type": "use",
-			"object": "shields",
-			"goal": 2,
-			"description": "Use shield 2 times"
-		},
-		{ 
-			"type": "use",
-			"object": "hover",
-			"goal": 3,
-			"description": "Use hover pack 3 times"
-		},
-		{ 
-			"type": "drive-on",
-			"object": "roofs",
-			"goal": 3,
-			"description": "Drive over 10 roofs"
-		}],
-		"expiration_time" : "2023-10-12T02:34:01+00:00",
-		"server_fetch_time" : "2023-10-12T01:23:01+00:00"
-	}'
-	return server_response
