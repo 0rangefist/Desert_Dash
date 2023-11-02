@@ -282,7 +282,8 @@ func detect_obstacle_collision():
 				registered_roof_colliders[collider_id] = true
 		else:
 				# restart game
-				get_tree().reload_current_scene()
+				#get_tree().reload_current_scene()
+				get_tree().change_scene_to_file("res://scenes/screens/home_screen.tscn")
 # keep count of gameplay time every second and notify HUD
 func _on_score_timer_timeout():
 	total_score += 1
