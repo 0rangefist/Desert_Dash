@@ -27,6 +27,7 @@ transform = Transform3D(1, 1.7108e-08, -1.74007e-07, 0, 0.995202, 0.0978444, 1.7
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
 transform = Transform3D(1, -2.81311e-13, -3.2116e-13, 7.97305e-14, 0.931507, 0.363723, 1.1076e-13, -0.363723, 0.931507, -7.48675e-13, -1.72868, -3.99537)
+current = true
 fov = 110.0
 far = 140.0
 
@@ -74,9 +75,6 @@ shadow_opacity = 0.54
 shadow_blur = 3.443
 
 [node name="HUD" parent="." instance=ExtResource("5_hhwul")]
-anchors_preset = 15
-anchor_bottom = 1.0
-grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
@@ -86,7 +84,6 @@ autostart = true
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_2p6bk")
 volume_db = -2.0
-autoplay = true
 
 [node name="DailyChallengeManager" parent="." instance=ExtResource("11_xbitx")]
 

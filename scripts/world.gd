@@ -14,6 +14,7 @@ var visible_units = []
 var daily_challenge
 
 var level_units: Array[PackedScene]
+var dynamic_load_happened = false # to keep track of how many units have been preloaded
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +40,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if not $Music.playing:
+		$Music.play()
 	populate_level()
 
 func populate_level():
@@ -66,7 +69,7 @@ func populate_level():
 		# update the nearest & farthest positions for use in the next frame
 		nearest_position -= UNIT_LENGTH
 		farthest_position -= UNIT_LENGTH
-
+	
 func get_random_unit_instance(unit_list):
 	# Randomly select an instantiate unit scene from list
 	return unit_list[randi() % unit_list.size()].instantiate()

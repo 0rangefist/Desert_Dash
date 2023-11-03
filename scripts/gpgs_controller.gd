@@ -1,7 +1,8 @@
 extends Control
 
 var GPGS
-var gameplay_scene = preload("res://scenes/world.tscn")
+#var gameplay_scene = preload("res://scenes/world.tscn")
+var gameplay_scene = preload("res://scenes/screens/loading_screen.tscn")
 
 func _ready():
 	if Engine.has_singleton("GodotPlayGamesServices"):
@@ -10,7 +11,7 @@ func _ready():
 		var request_email := false
 		var request_profile := true
 		var request_token := ""
-		GPGS.init(show_popups, request_email, request_profile, "")
+		GPGS.init(show_popups, request_email, request_profile, request_token)
 		GPGS.connect("_on_sign_in_success", _on_sign_in_success)
 		GPGS.connect("_on_sign_in_failed", _on_sign_in_failed)
 		GPGS.connect("_on_sign_out_success", _on_sign_out_success)
