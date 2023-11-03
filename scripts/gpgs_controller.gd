@@ -1,8 +1,8 @@
 extends Control
 
 var GPGS
-#var gameplay_scene = preload("res://scenes/world.tscn")
-var gameplay_scene = preload("res://scenes/screens/loading_screen.tscn")
+var main_scene_path = "res://scenes/world.tscn"
+var use_loading_screen = true
 
 func _ready():
 	if Engine.has_singleton("GodotPlayGamesServices"):
@@ -31,8 +31,8 @@ func _on_sign_out_failed():
 	print("Sign out failed")
 	
 func _on_play_pressed():
-	# Load the main game scene and transition to it
-	get_tree().change_scene_to_packed(gameplay_scene)
+	# call scene manager and ask to switch to main game scene
+	SceneManager.switch_scene(main_scene_path, use_loading_screen)
 
 func _on_sign_in_pressed():
 	if GPGS:

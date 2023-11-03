@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export_group("Scene to Load Next")
 @export_file("*.tscn") var scene_path: String

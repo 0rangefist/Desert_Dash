@@ -92,18 +92,18 @@ script = ExtResource("12_1awdm")
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[connection signal="coin_collected" from="Player" to="CanvasLayer/HUD" method="_on_player_coin_collected"]
 [connection signal="coin_collected" from="Player" to="DailyChallengeManager" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Player" to="CanvasLayer/HUD" method="_on_player_coin_collected"]
 [connection signal="hover_collected" from="Player" to="CanvasLayer/HUD" method="_on_player_hover_collected"]
 [connection signal="hover_dropped" from="Player" to="CanvasLayer/HUD" method="_on_player_hover_dropped"]
-[connection signal="hover_on" from="Player" to="CanvasLayer/HUD" method="_on_player_hover_on"]
 [connection signal="hover_on" from="Player" to="DailyChallengeManager" method="_on_hover_used"]
+[connection signal="hover_on" from="Player" to="CanvasLayer/HUD" method="_on_player_hover_on"]
 [connection signal="roof_driven_on" from="Player" to="DailyChallengeManager" method="_on_roof_driven_on"]
 [connection signal="score_one_second_elapsed" from="Player" to="CanvasLayer/HUD" method="_on_player_score_one_second_elapsed"]
 [connection signal="shield_collected" from="Player" to="CanvasLayer/HUD" method="_on_player_shield_collected"]
 [connection signal="shield_dropped" from="Player" to="CanvasLayer/HUD" method="_on_player_shield_dropped"]
-[connection signal="shield_up" from="Player" to="CanvasLayer/HUD" method="_on_player_shield_up"]
 [connection signal="shield_up" from="Player" to="DailyChallengeManager" method="_on_shield_used"]
+[connection signal="shield_up" from="Player" to="CanvasLayer/HUD" method="_on_player_shield_up"]
 [connection signal="timeout" from="ScoreTimer" to="Player" method="_on_score_timer_timeout"]
 [connection signal="challenge_task_updated" from="DailyChallengeManager" to="CanvasLayer/HUD" method="_on_daily_challenge_task_updated"]
 [connection signal="task_completed" from="DailyChallengeManager" to="CanvasLayer/HUD" method="_on_daily_challenge_task_completed"]
