@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://crv5xlk4uyktd"]
+[gd_scene load_steps=5 format=3 uid="uid://crv5xlk4uyktd"]
 
-[ext_resource type="PackedScene" uid="uid://yh2nto2qra2u" path="res://models/ground.blend" id="1_dym8q"]
 [ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="2_bsjmh"]
 [ext_resource type="PackedScene" uid="uid://dno520qom06w7" path="res://scenes/collectible_spawner.tscn" id="3_kwvf7"]
 [ext_resource type="PackedScene" uid="uid://gwp4nxh4arvs" path="res://scenes/obstacle_spawner.tscn" id="4_1nu8m"]
@@ -14,9 +13,6 @@ size = Vector3(17.0717, 0.749653, 35)
 collision_layer = 2
 collision_mask = 29
 
-[node name="Mesh" parent="Ground" instance=ExtResource("1_dym8q")]
-visible = false
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_ghqt4")
 
@@ -24,7 +20,6 @@ shape = SubResource("BoxShape3D_ghqt4")
 
 [node name="CollectibleSpawner" parent="." instance=ExtResource("3_kwvf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
-coin_probability = 0.0
 magnet_probability = 0.1
 shield_probability = 0.0
 
@@ -36,14 +31,12 @@ shield_probability = 0.0
 [node name="CollectibleSpawner3" parent="." instance=ExtResource("3_kwvf7")]
 transform = Transform3D(0.99998, 0, -0.00631805, 0, 1, 0, 0.00631805, 0, 0.99998, 5, 1, -3)
 coin_probability = 0.8
-magnet_probability = 0.0
 min_coin_num = 4
 max_coin_num = 6
 
 [node name="CollectibleSpawner4" parent="." instance=ExtResource("3_kwvf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -12)
 coin_probability = 0.4
-magnet_probability = 0.0
 shield_probability = 0.0
 max_coin_num = 5
 
