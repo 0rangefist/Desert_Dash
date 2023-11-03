@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" path="res://scripts/screens/loading_screen.gd" id="1_t62wn"]
 
-[node name="LoadingScreen" type="Control"]
-layout_mode = 3
+[node name="LoadingScreen" type="CanvasLayer"]
+script = ExtResource("1_t62wn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t62wn")
-scene_path = "res://scenes/world.tscn"
+color = Color(0.296875, 0.296875, 0.296875, 1)
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
