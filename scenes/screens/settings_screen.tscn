@@ -50,9 +50,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -29.0
-offset_top = -61.0
+offset_top = -85.0
 offset_right = 61.0
-offset_bottom = -35.0
+offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play Games"
@@ -64,10 +64,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -69.0
-offset_right = -37.0
-offset_bottom = -27.0
+offset_left = -80.0
+offset_top = -96.0
+offset_right = -32.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_bjx2d")
@@ -80,9 +80,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -90.0
-offset_top = -15.0
+offset_top = -39.0
 offset_right = 90.0
-offset_bottom = 33.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -91,28 +91,31 @@ theme = SubResource("Theme_epwc6")
 toggle_mode = true
 text = "CONNECT"
 
-[node name="AudioToggles" type="HBoxContainer" parent="."]
+[node name="AudioToggles" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = 57.0
-offset_right = 99.0
-offset_bottom = 95.0
+offset_left = -58.0
+offset_top = 15.0
+offset_right = 58.0
+offset_bottom = 113.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 50
 alignment = 1
 
 [node name="MusicButton" parent="AudioToggles" instance=ExtResource("3_bjigb")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
 bus_name = "music"
 
 [node name="SoundButton" parent="AudioToggles" instance=ExtResource("3_bjigb")]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
 icon = ExtResource("4_6jauh")
 bus_name = "sound"
 
