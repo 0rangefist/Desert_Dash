@@ -36,11 +36,11 @@ func _on_connect_toggled(button_pressed):
 	if button_pressed:
 		if GPGS:
 			GPGS.signIn()
-			$PlayGamesButton.text = "DISCONNECTING ..."
+			$PlayGamesButton.text = "CONNECTING ..."
 	else:
 		if GPGS:
 			GPGS.signOut()
-			$PlayGamesButton.text = "CONNECTING ..."
+			$PlayGamesButton.text = "DISCONNECTING ..."
 	
 func _on_sign_in_pressed():
 	if GPGS:
