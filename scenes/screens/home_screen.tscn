@@ -1,47 +1,106 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmn507kem8ymm"]
+[gd_scene load_steps=10 format=3 uid="uid://cmn507kem8ymm"]
 
-[ext_resource type="Script" path="res://scripts/gpgs_controller.gd" id="1_k6exy"]
+[ext_resource type="Script" path="res://scripts/screens/home_screen.gd" id="1_osgvq"]
+[ext_resource type="Texture2D" uid="uid://fius8lwkh6m8" path="res://textures/homescreen.png" id="2_qdh2t"]
+[ext_resource type="Texture2D" uid="uid://dku83wb677u7b" path="res://sprites/play_normal.svg" id="3_ea6ce"]
+[ext_resource type="Texture2D" uid="uid://cy7eh656jhfcg" path="res://sprites/play_pressed.svg" id="4_t4ffc"]
+[ext_resource type="Texture2D" uid="uid://cor05yu61qgiu" path="res://sprites/settings_normal.svg" id="5_tglxc"]
+[ext_resource type="Texture2D" uid="uid://deyjpsra5jcjk" path="res://sprites/close_normal.svg" id="6_kfw40"]
+[ext_resource type="PackedScene" uid="uid://dnytylsauc6g4" path="res://scenes/screens/settings_screen.tscn" id="7_sxcci"]
+[ext_resource type="Texture2D" uid="uid://c854whgk4cg87" path="res://sprites/title.svg" id="8_3id3m"]
 
-[node name="Control" type="Control"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qfkq2"]
+
+[node name="HomeScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_k6exy")
+script = ExtResource("1_osgvq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = -85.0
-offset_right = 102.0
-offset_bottom = 85.0
+offset_left = -308.0
+offset_top = -635.0
+offset_right = 1228.0
+offset_bottom = 2053.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
-alignment = 1
+scale = Vector2(0.395, 0.395)
+texture = ExtResource("2_qdh2t")
 
-[node name="Play" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+[node name="PlayButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -58.5
+offset_right = 60.0
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(62.0513, 58.2308)
 size_flags_vertical = 3
-text = "PLAY"
+texture_normal = ExtResource("3_ea6ce")
+texture_pressed = ExtResource("4_t4ffc")
 
-[node name="SignIn" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "SIGN IN"
+[node name="SettingsScreen" parent="." instance=ExtResource("7_sxcci")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.906
+anchor_right = 0.883
+anchor_bottom = 0.906
+offset_left = -435.84
+offset_top = -425.6
+offset_right = 44.16
+offset_bottom = 174.4
 
-[node name="SignOut" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "SIGN OUT"
+[node name="SettingsButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.906
+anchor_right = 0.883
+anchor_bottom = 0.906
+offset_left = -18.84
+offset_top = -18.6
+offset_right = 56.16
+offset_bottom = 56.4
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+toggle_mode = true
+texture_normal = ExtResource("5_tglxc")
+texture_pressed = ExtResource("6_kfw40")
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/SignIn" to="." method="_on_sign_in_pressed"]
-[connection signal="pressed" from="VBoxContainer/SignOut" to="." method="_on_sign_out_pressed"]
+[node name="Title" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_qfkq2")
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.199
+anchor_right = 0.5
+anchor_bottom = 0.199
+offset_left = -131.0
+offset_top = -74.4
+offset_right = 544.0
+offset_bottom = 273.6
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_3id3m")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

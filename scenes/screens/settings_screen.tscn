@@ -1,0 +1,136 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnytylsauc6g4"]
+
+[ext_resource type="Script" path="res://scripts/screens/settings_screen.gd" id="1_l5fvb"]
+[ext_resource type="Texture2D" uid="uid://c7bcxp1c5sgdm" path="res://sprites/play_games.svg" id="2_bjx2d"]
+[ext_resource type="PackedScene" uid="uid://ct0ys0nkjvmf6" path="res://scenes/components/audio_button.tscn" id="3_bjigb"]
+[ext_resource type="Texture2D" uid="uid://uvhq351885bm" path="res://sprites/sound_normal.svg" id="4_6jauh"]
+[ext_resource type="Texture2D" uid="uid://deyjpsra5jcjk" path="res://sprites/close_normal.svg" id="5_de8sr"]
+
+[sub_resource type="Gradient" id="Gradient_avxqa"]
+offsets = PackedFloat32Array(0, 0.718232, 1)
+colors = PackedColorArray(1, 0.760784, 0, 1, 1, 0.491149, 0, 1, 1, 0.247059, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n1oaq"]
+gradient = SubResource("Gradient_avxqa")
+
+[sub_resource type="Theme" id="Theme_epwc6"]
+default_font_size = 14
+
+[node name="SettingsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l5fvb")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -205.0
+offset_right = 128.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+pivot_offset = Vector2(128, 205)
+texture = SubResource("GradientTexture1D_n1oaq")
+
+[node name="PlayGamesLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -61.0
+offset_right = 61.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Games"
+
+[node name="PlayGamesIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -69.0
+offset_right = -37.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bjx2d")
+
+[node name="PlayGamesButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -15.0
+offset_right = 90.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_epwc6")
+toggle_mode = true
+text = "CONNECT"
+
+[node name="AudioToggles" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = 57.0
+offset_right = 99.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MusicButton" parent="AudioToggles" instance=ExtResource("3_bjigb")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="SoundButton" parent="AudioToggles" instance=ExtResource("3_bjigb")]
+layout_mode = 2
+icon = ExtResource("4_6jauh")
+bus_name = "sound"
+
+[node name="CloseButton" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 179.0
+offset_top = -140.0
+offset_right = 254.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_de8sr")
+
+[connection signal="toggled" from="PlayGamesButton" to="." method="_on_connect_toggled"]
