@@ -1,52 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7d1ifls68rb5"]
+[gd_scene load_steps=9 format=3 uid="uid://c7d1ifls68rb5"]
 
 [ext_resource type="Script" path="res://scripts/UIs/hud.gd" id="1_py2ra"]
-[ext_resource type="Texture2D" uid="uid://hepa2hmfs1a6" path="res://sprites/hud_shield.png" id="2_qxk2b"]
-[ext_resource type="Texture2D" uid="uid://cpldt4rvw1afp" path="res://sprites/hud_shield_grow.png" id="3_1ejum"]
-[ext_resource type="Texture2D" uid="uid://ihbabdmcjsek" path="res://sprites/hud_jetpack.png" id="4_prahr"]
-[ext_resource type="Texture2D" uid="uid://7qor5p5p6ovy" path="res://sprites/hud_jetpack_grow.png" id="5_qejh7"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g7ilb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_qxk2b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_1ejum")
-}],
-"loop": true,
-"name": &"default",
-"speed": 7.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"hover",
-"speed": 5.0
-}]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpg4r"]
-bg_color = Color(0.188235, 0.188235, 0.188235, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my8nk"]
-bg_color = Color(0.529412, 0.898039, 0, 1)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_316i7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_prahr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_qejh7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 7.0
-}]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knbr6"]
-bg_color = Color(0.403922, 0.870588, 0.988235, 1)
+[ext_resource type="Texture2D" uid="uid://jply5cctoa1g" path="res://sprites/icon_coin.png" id="2_50olv"]
+[ext_resource type="Texture2D" uid="uid://bopu3gsl63w7a" path="res://sprites/icon_score.svg" id="3_fcdc1"]
+[ext_resource type="Texture2D" uid="uid://clcyg10ujqugp" path="res://textures/progress_under.png" id="8_1yxvp"]
+[ext_resource type="Texture2D" uid="uid://dn30sa51mbbqh" path="res://textures/progress_progress.png" id="9_xu8rm"]
+[ext_resource type="Texture2D" uid="uid://cninktl4ybq02" path="res://textures/progress_over.svg" id="10_lu7rc"]
+[ext_resource type="Texture2D" uid="uid://bkyqx2jt424y4" path="res://sprites/hover_pack.svg" id="10_mhv4q"]
+[ext_resource type="Texture2D" uid="uid://bhxpx5q7gyl1e" path="res://sprites/shield.svg" id="11_tfj8c"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -57,71 +18,169 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_py2ra")
 
+[node name="CoinIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 36.0
+offset_right = 71.0
+offset_bottom = 76.0
+texture = ExtResource("2_50olv")
+
+[node name="ScoreIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_top = 39.0
+offset_right = -79.0
+offset_bottom = 84.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_fcdc1")
+
 [node name="CoinCount" type="Label" parent="."]
 layout_mode = 1
-offset_left = 37.0
-offset_top = 21.0
-offset_right = 98.0
-offset_bottom = 47.0
+offset_left = 76.0
+offset_top = 44.0
+offset_right = 137.0
+offset_bottom = 70.0
 size_flags_horizontal = 0
-text = "Coins: 0"
+text = "0"
 
 [node name="ScoreTime" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -140.0
-offset_top = 21.0
-offset_right = -52.0
-offset_bottom = 47.0
+offset_left = -81.0
+offset_top = 43.0
+offset_right = -36.0
+offset_bottom = 69.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 1
-text = "Time: 00:00"
+text = "00:00"
 
-[node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(53, 66)
-sprite_frames = SubResource("SpriteFrames_g7ilb")
-autoplay = "default"
-frame_progress = 0.81485
+[node name="Shield" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 18.0
+offset_top = 63.0
+offset_right = 331.0
+offset_bottom = 112.0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(30.5714, 92.1429)
 
-[node name="ProgressBar" type="ProgressBar" parent="ShieldSprite"]
-offset_left = -16.0
-offset_top = 21.0
-offset_right = 194.0
-offset_bottom = 61.0
-scale = Vector2(0.15, 0.15)
-theme_override_styles/background = SubResource("StyleBoxFlat_tpg4r")
-theme_override_styles/fill = SubResource("StyleBoxFlat_my8nk")
+[node name="ProgressTimer" type="Timer" parent="Shield"]
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Shield"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -22.5
+offset_right = 133.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
 max_value = 30.0
-step = 1.0
-value = 30.0
-show_percentage = false
+nine_patch_stretch = true
+texture_under = ExtResource("8_1yxvp")
+texture_progress = ExtResource("9_xu8rm")
+texture_progress_offset = Vector2(0.5, 0)
+tint_progress = Color(0.737255, 1, 0.0705882, 1)
 
-[node name="ProgressTimer" type="Timer" parent="ShieldSprite"]
+[node name="ProgressOver" type="TextureRect" parent="Shield"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.5
+offset_top = -30.5
+offset_right = 148.5
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_lu7rc")
 
-[node name="HoverSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(101, 66)
-sprite_frames = SubResource("SpriteFrames_316i7")
-autoplay = "default"
+[node name="Icon" type="TextureRect" parent="Shield"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -37.5
+offset_right = 74.0
+offset_bottom = 37.5
+grow_vertical = 2
+texture = ExtResource("11_tfj8c")
 
-[node name="ProgressBar" type="ProgressBar" parent="HoverSprite"]
-offset_left = -16.0
-offset_top = 21.0
-offset_right = 194.0
-offset_bottom = 61.0
-scale = Vector2(0.15, 0.15)
-theme_override_styles/background = SubResource("StyleBoxFlat_tpg4r")
-theme_override_styles/fill = SubResource("StyleBoxFlat_knbr6")
+[node name="Hover" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -313.0
+offset_bottom = 49.0
+grow_horizontal = 0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(30.5714, 92.1429)
+
+[node name="ProgressTimer" type="Timer" parent="Hover"]
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Hover"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 11.5
+offset_top = 82.5
+offset_right = 216.5
+offset_bottom = 127.5
+grow_horizontal = 2
+grow_vertical = 2
 max_value = 30.0
-step = 1.0
-value = 30.0
-show_percentage = false
+fill_mode = 1
+nine_patch_stretch = true
+texture_under = ExtResource("8_1yxvp")
+texture_progress = ExtResource("9_xu8rm")
+texture_progress_offset = Vector2(0.5, 0)
+tint_progress = Color(0.835294, 1, 1, 1)
 
-[node name="ProgressTimer" type="Timer" parent="HoverSprite"]
+[node name="ProgressOver" type="TextureRect" parent="Hover"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.5
+offset_top = 74.5
+offset_right = 293.5
+offset_bottom = 135.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_lu7rc")
+flip_h = true
 
-[connection signal="timeout" from="ShieldSprite/ProgressTimer" to="." method="_on_shield_progress_timer_timeout"]
-[connection signal="timeout" from="HoverSprite/ProgressTimer" to="." method="_on_hover_progress_timer_timeout"]
+[node name="Icon" type="TextureRect" parent="Hover"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 383.286
+offset_top = 67.4047
+offset_right = 458.286
+offset_bottom = 142.405
+grow_vertical = 2
+texture = ExtResource("10_mhv4q")
+
+[connection signal="timeout" from="Shield/ProgressTimer" to="." method="_on_shield_progress_timer_timeout"]
+[connection signal="timeout" from="Hover/ProgressTimer" to="." method="_on_hover_progress_timer_timeout"]

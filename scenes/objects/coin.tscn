@@ -35,5 +35,6 @@ shape = SubResource("SphereShape3D_61e2j")
 stream = ExtResource("2_oo5rf")
 volume_db = -2.5
 pitch_scale = 1.1
+bus = &"sound"
 
 [connection signal="body_entered" from="." to="." method="_on_player_encountered"]

@@ -5,6 +5,7 @@ var start_positiion
 var current_position
 var swiping = false
 var axis_detection_sensitivity = 0.5 # 0 to 1 
+var detecting = true
 
 # swipe signals
 signal left_swipe
@@ -13,6 +14,8 @@ signal up_swipe
 signal down_swipe
 
 func _process(_delta):
+	if not detecting:
+		return
 	
 	# detect initial press
 	if Input.is_action_just_pressed('press'):

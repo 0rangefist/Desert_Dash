@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cy8q4vr35sft"]
+[gd_scene load_steps=19 format=3 uid="uid://cy8q4vr35sft"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_snt1e"]
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
@@ -8,10 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="4_uwh34"]
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 [ext_resource type="Texture2D" uid="uid://d1cgyfvv3qoi5" path="res://textures/tire_track_ao.png" id="5_l6ard"]
+[ext_resource type="PackedScene" uid="uid://cwy8lvf7s4umh" path="res://scenes/swipe_detector.tscn" id="7_vnyeh"]
 [ext_resource type="AudioStream" uid="uid://cidfrfy5ittq8" path="res://sounds/music/music.mp3" id="10_2p6bk"]
 [ext_resource type="PackedScene" uid="uid://d0h772v1n8ins" path="res://scenes/components/daily_challenge_manager.tscn" id="11_xbitx"]
 [ext_resource type="Script" path="res://scripts/daily_challenges/daily_challenge.gd" id="12_1awdm"]
+[ext_resource type="Texture2D" uid="uid://cor05yu61qgiu" path="res://sprites/settings_normal.svg" id="13_775gd"]
 [ext_resource type="Texture2D" uid="uid://suw50gew01oi" path="res://textures/tire_track.png" id="14_0okxj"]
+[ext_resource type="Texture2D" uid="uid://deyjpsra5jcjk" path="res://sprites/close_normal.svg" id="15_5168e"]
+[ext_resource type="PackedScene" uid="uid://dnytylsauc6g4" path="res://scenes/screens/settings_screen.tscn" id="15_moqhp"]
+[ext_resource type="PackedScene" uid="uid://dm8iwlkcr6evi" path="res://scenes/screens/daily_challenges_screen.tscn" id="17_31rus"]
+[ext_resource type="Texture2D" uid="uid://dblw1k5715ats" path="res://sprites/pause_normal.svg" id="17_q5r02"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_snt1e")
@@ -59,6 +65,8 @@ lower_fade = 2.16301
 distance_fade_begin = 2.0
 distance_fade_length = 12.0
 
+[node name="SwipeDetector" parent="Player" instance=ExtResource("7_vnyeh")]
+
 [node name="GroundMesh" parent="." instance=ExtResource("4_uwh34")]
 transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 35, 0, -0.144253, 0)
 skeleton = NodePath("../Ground")
@@ -80,6 +88,7 @@ autostart = true
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_2p6bk")
 volume_db = -2.0
+bus = &"music"
 
 [node name="DailyChallengeManager" parent="." instance=ExtResource("11_xbitx")]
 
@@ -91,6 +100,64 @@ script = ExtResource("12_1awdm")
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("5_hhwul")]
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="DailyChallengesScreen" parent="CanvasLayer" instance=ExtResource("17_31rus")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.884
+anchor_top = 0.792
+anchor_right = 0.884
+anchor_bottom = 0.792
+offset_left = -436.32
+offset_top = -419.2
+offset_right = 43.68
+offset_bottom = 180.8
+
+[node name="DailyChallengesButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.8
+anchor_right = 0.883
+anchor_bottom = 0.8
+offset_left = -18.84
+offset_top = -19.0
+offset_right = 56.16
+offset_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+toggle_mode = true
+texture_normal = ExtResource("17_q5r02")
+texture_pressed = ExtResource("15_5168e")
+
+[node name="SettingsScreen" parent="CanvasLayer" instance=ExtResource("15_moqhp")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.904
+anchor_right = 0.883
+anchor_bottom = 0.904
+offset_left = -435.84
+offset_top = -424.4
+offset_right = 44.16
+offset_bottom = 175.6
+
+[node name="SettingsButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.906
+anchor_right = 0.883
+anchor_bottom = 0.906
+offset_left = -18.84
+offset_top = -18.6
+offset_right = 56.16
+offset_bottom = 56.4
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+toggle_mode = true
+texture_normal = ExtResource("13_775gd")
+texture_pressed = ExtResource("15_5168e")
 
 [connection signal="coin_collected" from="Player" to="DailyChallengeManager" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Player" to="CanvasLayer/HUD" method="_on_player_coin_collected"]
@@ -104,7 +171,13 @@ size_flags_vertical = 0
 [connection signal="shield_dropped" from="Player" to="CanvasLayer/HUD" method="_on_player_shield_dropped"]
 [connection signal="shield_up" from="Player" to="DailyChallengeManager" method="_on_shield_used"]
 [connection signal="shield_up" from="Player" to="CanvasLayer/HUD" method="_on_player_shield_up"]
+[connection signal="down_swipe" from="Player/SwipeDetector" to="Player" method="_on_swipe_detector_down_swipe"]
+[connection signal="left_swipe" from="Player/SwipeDetector" to="Player" method="_on_swipe_detector_left_swipe"]
+[connection signal="right_swipe" from="Player/SwipeDetector" to="Player" method="_on_swipe_detector_right_swipe"]
+[connection signal="up_swipe" from="Player/SwipeDetector" to="Player" method="_on_swipe_detector_up_swipe"]
 [connection signal="timeout" from="ScoreTimer" to="Player" method="_on_score_timer_timeout"]
 [connection signal="challenge_task_updated" from="DailyChallengeManager" to="CanvasLayer/HUD" method="_on_daily_challenge_task_updated"]
 [connection signal="task_completed" from="DailyChallengeManager" to="CanvasLayer/HUD" method="_on_daily_challenge_task_completed"]
 [connection signal="daily_challenge_fetched" from="DailyChallengeManager/DailyChallenge" to="DailyChallengeManager" method="_on_daily_challenge_fetched"]
+[connection signal="pressed" from="CanvasLayer/DailyChallengesButton" to="." method="_on_daily_challenges_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsButton" to="." method="_on_settings_button_pressed"]

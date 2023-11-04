@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://0q861r3s86yf"]
+[gd_scene load_steps=9 format=3 uid="uid://0q861r3s86yf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_fmbye"]
 [ext_resource type="PackedScene" uid="uid://cxh36txje42l6" path="res://models/jeep.gltf" id="3_7lxgy"]
-[ext_resource type="PackedScene" uid="uid://cwy8lvf7s4umh" path="res://scenes/swipe_detector.tscn" id="3_h0uno"]
 [ext_resource type="PackedScene" uid="uid://ugvxg1qeo1xp" path="res://scenes/misc/dust_trail.tscn" id="5_6mxia"]
 [ext_resource type="AudioStream" uid="uid://bxleoaqy3q60b" path="res://sounds/sfx/use_hover.wav" id="5_b1kcl"]
 [ext_resource type="AudioStream" uid="uid://b66udxh1y37p0" path="res://sounds/sfx/activate_shield.mp3" id="6_0ygnl"]
@@ -26,8 +25,6 @@ transform = Transform3D(0.595, 0, 1.41859e-07, 0, 0.595, 0, -1.41859e-07, 0, 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00120521, -0.214082, -0.361688)
 shape = SubResource("BoxShape3D_c2kmu")
 
-[node name="SwipeDetector" parent="." instance=ExtResource("3_h0uno")]
-
 [node name="MagnetBox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.0577)
 collision_mask = 8
@@ -46,18 +43,16 @@ emitting = false
 stream = ExtResource("5_b1kcl")
 volume_db = -4.0
 pitch_scale = 0.67
+bus = &"sound"
 
 [node name="ShieldSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_0ygnl")
 volume_db = 1.0
+bus = &"sound"
 
 [node name="Engine" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_dfnes")
 volume_db = -12.0
 pitch_scale = 1.45
 
-[connection signal="down_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_down_swipe"]
-[connection signal="left_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_left_swipe"]
-[connection signal="right_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_right_swipe"]
-[connection signal="up_swipe" from="SwipeDetector" to="." method="_on_swipe_detector_up_swipe"]
 [connection signal="area_entered" from="MagnetBox" to="." method="_on_magnet_box_area_entered"]

@@ -37,6 +37,11 @@ func _ready():
 		farthest_position -= UNIT_LENGTH
 		# add the unit to the tracking array
 		visible_units.append(unit)
+	# set amount of reverb on 
+	var bus_index = AudioServer.get_bus_index("sound")
+	var reverb: AudioEffectReverb = AudioServer.get_bus_effect(bus_index, 0)
+	reverb.wet = 0.1
+	reverb.room_size = 0.5
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -87,3 +92,29 @@ static func _random_direction() -> Vector3:
 #		var unit = unit_scene.instantiate()
 #		print("Loaded unit instance:", unit.visible)
 #		add_child(unit)
+
+
+func _on_settings_button_pressed():
+	# toggle pause every time button pressed
+	Global.pause()
+	# toggle swipe detector enable
+	$Player/SwipeDetector.detecting = !$Player/SwipeDetector.detecting
+	# toggle daiy challenges button disable
+	$CanvasLayer/DailyChallengesButton.disabled = !$CanvasLayer/DailyChallengesButton.disabled
+	if $CanvasLayer/SettingsScreen.visible:
+		$CanvasLayer/SettingsScreen.hide()
+	else:
+		$CanvasLayer/SettingsScreen.show()
+		
+
+func _on_daily_challenges_button_pressed():
+	# toggle pause every time button pressed
+	Global.pause()
+	# toggle swipe detector enable
+	$Player/SwipeDetector.detecting = !$Player/SwipeDetector.detecting
+	# toggle settings button disable
+	$CanvasLayer/SettingsButton.disabled = !$CanvasLayer/SettingsButton.disabled
+	if $CanvasLayer/DailyChallengesScreen.visible:
+		$CanvasLayer/DailyChallengesScreen.hide()
+	else:
+		$CanvasLayer/DailyChallengesScreen.show()
