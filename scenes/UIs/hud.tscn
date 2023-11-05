@@ -21,9 +21,9 @@ script = ExtResource("1_py2ra")
 [node name="CoinIcon" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 31.0
-offset_top = 36.0
+offset_top = 39.0
 offset_right = 71.0
-offset_bottom = 76.0
+offset_bottom = 79.0
 texture = ExtResource("2_50olv")
 
 [node name="ScoreIcon" type="TextureRect" parent="."]
@@ -31,10 +31,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -123.0
-offset_top = 39.0
-offset_right = -79.0
-offset_bottom = 84.0
+offset_left = -139.0
+offset_top = 43.0
+offset_right = -95.0
+offset_bottom = 88.0
 grow_horizontal = 0
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_fcdc1")
@@ -46,6 +46,7 @@ offset_top = 44.0
 offset_right = 137.0
 offset_bottom = 70.0
 size_flags_horizontal = 0
+theme_type_variation = &"HeaderMedium"
 text = "0"
 
 [node name="ScoreTime" type="Label" parent="."]
@@ -60,6 +61,7 @@ offset_bottom = 69.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 1
+theme_type_variation = &"HeaderMedium"
 text = "00:00"
 
 [node name="Shield" type="Control" parent="."]
@@ -114,9 +116,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = -6.66667
 offset_top = -37.5
-offset_right = 74.0
-offset_bottom = 37.5
+offset_right = 81.3333
+offset_bottom = 50.5
 grow_vertical = 2
 texture = ExtResource("11_tfj8c")
 
@@ -175,10 +178,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 383.286
+offset_left = 376.619
 offset_top = 67.4047
-offset_right = 458.286
-offset_bottom = 142.405
+offset_right = 464.619
+offset_bottom = 155.405
 grow_vertical = 2
 texture = ExtResource("10_mhv4q")
 

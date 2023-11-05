@@ -92,29 +92,3 @@ static func _random_direction() -> Vector3:
 #		var unit = unit_scene.instantiate()
 #		print("Loaded unit instance:", unit.visible)
 #		add_child(unit)
-
-
-func _on_settings_button_pressed():
-	# toggle pause every time button pressed
-	Global.pause()
-	# toggle swipe detector enable
-	$Player/SwipeDetector.detecting = !$Player/SwipeDetector.detecting
-	# toggle daiy challenges button disable
-	$CanvasLayer/DailyChallengesButton.disabled = !$CanvasLayer/DailyChallengesButton.disabled
-	if $CanvasLayer/SettingsScreen.visible:
-		$CanvasLayer/SettingsScreen.hide()
-	else:
-		$CanvasLayer/SettingsScreen.show()
-		
-
-func _on_daily_challenges_button_pressed():
-	# toggle pause every time button pressed
-	Global.pause()
-	# toggle swipe detector enable
-	$Player/SwipeDetector.detecting = !$Player/SwipeDetector.detecting
-	# toggle settings button disable
-	$CanvasLayer/SettingsButton.disabled = !$CanvasLayer/SettingsButton.disabled
-	if $CanvasLayer/DailyChallengesScreen.visible:
-		$CanvasLayer/DailyChallengesScreen.hide()
-	else:
-		$CanvasLayer/DailyChallengesScreen.show()

@@ -50,6 +50,5 @@ func _on_sign_out_pressed():
 	if GPGS:
 		GPGS.signOut()
 
-
 func _on_close_button_pressed():
 	hide()
