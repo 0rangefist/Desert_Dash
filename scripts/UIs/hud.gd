@@ -47,13 +47,7 @@ func _on_hover_progress_timer_timeout():
 # SCORE TIME
 # update the score time every second
 func _on_player_score_one_second_elapsed(total_score_time):
-	$ScoreTime.text = format_time(total_score_time)
-
-# helper function to format time from secs to 00m:00s
-func format_time(total_time):
-	var minutes = int(total_time / 60)
-	var seconds = total_time % 60
-	return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)
+	$ScoreTime.text = Global.format_time(total_score_time)
 
 func _on_daily_challenge_task_updated(tasks):
 	print("DAILY CHALLENGE TASKS")

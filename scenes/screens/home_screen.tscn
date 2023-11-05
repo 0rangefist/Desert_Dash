@@ -1,13 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmn507kem8ymm"]
+[gd_scene load_steps=15 format=3 uid="uid://cmn507kem8ymm"]
 
 [ext_resource type="Script" path="res://scripts/screens/home_screen.gd" id="1_osgvq"]
 [ext_resource type="Texture2D" uid="uid://fius8lwkh6m8" path="res://textures/homescreen.png" id="2_qdh2t"]
 [ext_resource type="Texture2D" uid="uid://dku83wb677u7b" path="res://sprites/play_normal.svg" id="3_ea6ce"]
 [ext_resource type="Texture2D" uid="uid://cy7eh656jhfcg" path="res://sprites/play_pressed.svg" id="4_t4ffc"]
 [ext_resource type="Texture2D" uid="uid://cor05yu61qgiu" path="res://sprites/settings_normal.svg" id="5_tglxc"]
-[ext_resource type="Texture2D" uid="uid://deyjpsra5jcjk" path="res://sprites/close_normal.svg" id="6_kfw40"]
+[ext_resource type="Texture2D" uid="uid://cbcd06yw21b8o" path="res://sprites/settings_pressed.svg" id="7_06p01"]
 [ext_resource type="PackedScene" uid="uid://dnytylsauc6g4" path="res://scenes/screens/settings_screen.tscn" id="7_sxcci"]
 [ext_resource type="Texture2D" uid="uid://c854whgk4cg87" path="res://sprites/title.svg" id="8_3id3m"]
+[ext_resource type="Texture2D" uid="uid://d1rq20h3u2hkn" path="res://sprites/daiy_challenge_normal.svg" id="8_3id5w"]
+[ext_resource type="Texture2D" uid="uid://oyp0gomc7d4e" path="res://sprites/leaderboards_pressed.svg" id="9_bojc1"]
+[ext_resource type="Texture2D" uid="uid://dutg5ljj3iwwg" path="res://sprites/daiy_challenge_pressed.svg" id="9_fx6s0"]
+[ext_resource type="Texture2D" uid="uid://di8mxbus2tkth" path="res://sprites/leaderboards_normal.svg" id="9_os2qk"]
+[ext_resource type="PackedScene" uid="uid://dm8iwlkcr6evi" path="res://scenes/screens/daily_challenges_screen.tscn" id="10_amqeu"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qfkq2"]
 
@@ -27,14 +32,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -308.0
-offset_top = -520.0
-offset_right = 1228.0
-offset_bottom = 2168.0
+offset_left = -768.0
+offset_top = -1368.0
+offset_right = 768.0
+offset_bottom = 1320.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.395, 0.395)
+pivot_offset = Vector2(767.73, 1386.19)
 texture = ExtResource("2_qdh2t")
+
+[node name="Title" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_qfkq2")
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.199
+anchor_right = 0.5
+anchor_bottom = 0.199
+offset_left = -131.0
+offset_top = -74.4
+offset_right = 544.0
+offset_bottom = 273.6
+grow_horizontal = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_3id3m")
 
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -55,52 +78,80 @@ size_flags_vertical = 3
 texture_normal = ExtResource("3_ea6ce")
 texture_pressed = ExtResource("4_t4ffc")
 
-[node name="SettingsScreen" parent="." instance=ExtResource("7_sxcci")]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.883
-anchor_top = 0.906
-anchor_right = 0.883
-anchor_bottom = 0.906
-offset_left = -435.84
-offset_top = -425.6
-offset_right = 44.16
-offset_bottom = 174.4
-
 [node name="SettingsButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.883
-anchor_top = 0.906
-anchor_right = 0.883
-anchor_bottom = 0.906
-offset_left = -18.84
-offset_top = -18.6
-offset_right = 56.16
-offset_bottom = 56.4
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -74.9999
+offset_bottom = 6.10352e-05
 grow_horizontal = 0
-scale = Vector2(0.7, 0.7)
-toggle_mode = true
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("5_tglxc")
-texture_pressed = ExtResource("6_kfw40")
+texture_pressed = ExtResource("7_06p01")
 
-[node name="Title" type="TextureRect" parent="."]
-material = SubResource("CanvasItemMaterial_qfkq2")
-clip_contents = true
+[node name="DailyChallengseButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.199
-anchor_right = 0.5
-anchor_bottom = 0.199
-offset_left = -131.0
-offset_top = -74.4
-offset_right = 544.0
-offset_bottom = 273.6
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -147.0
+offset_bottom = -72.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("8_3id5w")
+texture_pressed = ExtResource("9_fx6s0")
+
+[node name="LeaderBoardsButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -74.9999
+offset_right = 96.0
+offset_bottom = 6.10352e-05
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("9_os2qk")
+texture_pressed = ExtResource("9_bojc1")
+
+[node name="InputBlocker" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("8_3id3m")
+grow_vertical = 2
+
+[node name="DailyChallengesScreen" parent="." instance=ExtResource("10_amqeu")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsScreen" parent="." instance=ExtResource("7_sxcci")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -300.0
+offset_right = 240.0
+offset_bottom = 300.0
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="DailyChallengseButton" to="." method="_on_daily_challengse_button_pressed"]
+[connection signal="pressed" from="LeaderBoardsButton" to="." method="_on_leader_boards_button_pressed"]
+[connection signal="hidden" from="DailyChallengesScreen" to="." method="_on_popup_screen_hidden"]
+[connection signal="hidden" from="SettingsScreen" to="." method="_on_popup_screen_hidden"]
