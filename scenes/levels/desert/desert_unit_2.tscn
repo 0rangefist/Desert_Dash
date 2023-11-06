@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://1q88qxltsvv4"]
+[gd_scene load_steps=6 format=3 uid="uid://1q88qxltsvv4"]
 
+[ext_resource type="Material" uid="uid://blc87lhukwegv" path="res://resources/desert_ground.tres" id="1_5b0c3"]
 [ext_resource type="PackedScene" uid="uid://dno520qom06w7" path="res://scenes/collectible_spawner.tscn" id="3_uw7d6"]
 [ext_resource type="PackedScene" uid="uid://gwp4nxh4arvs" path="res://scenes/obstacle_spawner.tscn" id="4_q71yl"]
 
@@ -7,6 +8,7 @@
 size = Vector3(17.072, 0.1, 35)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hymm5"]
+material = ExtResource("1_5b0c3")
 size = Vector2(210, 35)
 
 [node name="LevelSection" type="Node3D"]
