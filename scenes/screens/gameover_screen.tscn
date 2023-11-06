@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmyfqcxgphxpn"]
+[gd_scene load_steps=17 format=3 uid="uid://cmyfqcxgphxpn"]
 
 [ext_resource type="Script" path="res://scripts/screens/gameover_screen.gd" id="1_xm1rg"]
 [ext_resource type="Texture2D" uid="uid://ufjapcbwnc3x" path="res://textures/gameover_screen.png" id="2_2br2m"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dutg5ljj3iwwg" path="res://sprites/daiy_challenge_pressed.svg" id="9_8pdgd"]
 [ext_resource type="Texture2D" uid="uid://di8mxbus2tkth" path="res://sprites/leaderboards_normal.svg" id="10_y6fe8"]
 [ext_resource type="Texture2D" uid="uid://oyp0gomc7d4e" path="res://sprites/leaderboards_pressed.svg" id="11_dom6p"]
+[ext_resource type="PackedScene" uid="uid://c3c58j1hxtwxy" path="res://scenes/screens/leaderboards_screen.tscn" id="12_ji5jq"]
 [ext_resource type="PackedScene" uid="uid://dm8iwlkcr6evi" path="res://scenes/screens/daily_challenges_screen.tscn" id="12_r5tog"]
 [ext_resource type="Texture2D" uid="uid://jply5cctoa1g" path="res://sprites/icon_coin.png" id="13_g1iiq"]
 [ext_resource type="PackedScene" uid="uid://dnytylsauc6g4" path="res://scenes/screens/settings_screen.tscn" id="13_i6ear"]
@@ -220,6 +221,10 @@ offset_left = -240.0
 offset_top = -300.0
 offset_right = 240.0
 offset_bottom = 300.0
+
+[node name="LeaderboardsScreen" parent="." instance=ExtResource("12_ji5jq")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="ReplayButton" to="." method="_on_replay_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

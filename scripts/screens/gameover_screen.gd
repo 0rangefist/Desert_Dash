@@ -9,7 +9,9 @@ func _ready():
 	
 	# submit score to Google Play Games leaderboard
 	if Global.GPGS:
-		Global.GPGS.submitLeaderBoardScore("CgkIyv2UyaEfEAIQAQ", Global.score * 1000) #msecs
+		Global.GPGS.submitLeaderBoardScore(
+			Global.SURVIVAL_LEADERBOARD,
+			Global.score * 1000) #msecs
 	
 	# if daily challenge completed, submit finish time to Google Play Games leaderboard
 	
@@ -31,9 +33,8 @@ func _on_daily_challengse_button_pressed():
 	$InputBlocker.show()
 
 func _on_leader_boards_button_pressed():
-	# show leaderboards
-	if Global.GPGS:
-		Global.GPGS.showAllLeaderBoards()
+	# show leaderboards popup screen
+	$LeaderboardsScreen.show()
 
 func _on_popup_screen_hidden():
 	# when a popup is cosed (hidden)

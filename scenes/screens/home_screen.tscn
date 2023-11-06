@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmn507kem8ymm"]
+[gd_scene load_steps=16 format=3 uid="uid://cmn507kem8ymm"]
 
 [ext_resource type="Script" path="res://scripts/screens/home_screen.gd" id="1_osgvq"]
 [ext_resource type="Texture2D" uid="uid://fius8lwkh6m8" path="res://textures/homescreen.png" id="2_qdh2t"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dutg5ljj3iwwg" path="res://sprites/daiy_challenge_pressed.svg" id="9_fx6s0"]
 [ext_resource type="Texture2D" uid="uid://di8mxbus2tkth" path="res://sprites/leaderboards_normal.svg" id="9_os2qk"]
 [ext_resource type="PackedScene" uid="uid://dm8iwlkcr6evi" path="res://scenes/screens/daily_challenges_screen.tscn" id="10_amqeu"]
+[ext_resource type="PackedScene" uid="uid://c3c58j1hxtwxy" path="res://scenes/screens/leaderboards_screen.tscn" id="12_700na"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qfkq2"]
 
@@ -148,6 +149,10 @@ offset_left = -240.0
 offset_top = -300.0
 offset_right = 240.0
 offset_bottom = 300.0
+
+[node name="LeaderboardsScreen" parent="." instance=ExtResource("12_700na")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

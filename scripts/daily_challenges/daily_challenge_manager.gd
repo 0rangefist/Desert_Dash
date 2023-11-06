@@ -6,6 +6,9 @@
 # on completion, emits signal along with the actual task dictionary object
 # consumed by the daily challenges popup manager
 
+# also tracks when the daily challenge is complete
+# emits a signal to be consumed by the daily challenge popup manager
+
 extends Node
 var curr_coins_collected = 0
 var curr_shields_used = 0
@@ -19,8 +22,10 @@ var task_descriptions = Array()  # descriptions of up-to-date task progress
 var daily_challenge: DailyChallenge = null
 var completed_tasks: Dictionary = {} # keeps track of completed tasks
 var daily_challenge_is_fetched = false # prevents processing unfetched daily challenge
+var daily_challenge_not_completed = true # prevents repeated signaling when daily challenge completed
 signal task_progressed
 signal task_completed
+signal daily_challenge_completed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,6 +52,8 @@ func update_task_descriptions():
 			curr_value = task.goal
 			# handler to send a signal if task is found to be completed
 			signal_if_task_completed(task, task_id)
+			# handler to send a signal if daily challenge is completed
+			signal_if_daily_challenge_completed()
 		
 		# now update task_descriptions to reflect task progress in gameplay
 		# construct the task details string
@@ -68,6 +75,23 @@ func signal_if_task_completed(task, task_id):
 		task_completed.emit(task)
 		# register the task in the completed_tasks dict
 		completed_tasks[task_id] = true
+		
+# checks if the daily challenge is completed and emits appropriate signal	
+func signal_if_daily_challenge_completed():
+	if daily_challenge_not_completed:
+		# if the number tasks completed is the same as the number of tasks given
+		if completed_tasks.size() == $DailyChallenge.tasks.size(): 
+			# flip flag
+			daily_challenge_not_completed = false
+			# submit current time (score) of daily challenge completion to GPGS
+			if Global.GPGS:
+				Global.GPGS.submitLeaderBoardScore(
+					Global.CHALLENGE_LEADERBOARD,
+					Global.score * 1000) #msecs
+				print("Score: " + str(Global.score))
+			# emit signal
+			#await get_tree().create_timer(6).timeout
+			daily_challenge_completed.emit()
 	
 func _on_coin_collected(coin_count):
 	curr_coins_collected = coin_count
@@ -103,5 +127,7 @@ func get_curr_value(object_type: String) -> int:
 
 func _on_daily_challenge_fetched():
 	daily_challenge_is_fetched = true
+	# for testing purposes overwrite daily_challenge model
+	# $DailyChallenge.tasks = [{"description":"Collect 5 coins","goal":5,"object":"coins","type":"collect"},{"description":"Use 2 hover","goal":2,"object":"hover","type":"use"},{"description":"Use 1 shields","goal":1,"object":"shields","type":"use"}]
 	# construct/update the list of tasks of the daily challenge
 	update_task_descriptions()

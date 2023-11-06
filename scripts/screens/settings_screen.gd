@@ -7,7 +7,7 @@ func _ready():
 		GPGS = Engine.get_singleton("GodotPlayGamesServices")
 		var show_popups := true
 		var request_email := false
-		var request_profile := true
+		var request_profile := false
 		var request_token := ""
 		GPGS.init(show_popups, request_email, request_profile, request_token)
 		GPGS.connect("_on_sign_in_success", _on_sign_in_success)

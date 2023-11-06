@@ -281,12 +281,12 @@ func detect_obstacle_collision():
 				# registering repeated collisions with same collider
 				registered_roof_colliders[collider_id] = true
 		else:
-				# Update the globals score variables
-				Global.coin_count = coin_count
-				Global.score = total_score
 				# Switch to the gameover screen
 				SceneManager.switch_scene("res://scenes/screens/gameover_screen.tscn")
 # keep count of gameplay time every second and notify HUD
 func _on_score_timer_timeout():
 	total_score += 1
 	score_one_second_elapsed.emit(total_score)
+	# Update the globals score variables
+	Global.coin_count = coin_count
+	Global.score = total_score
