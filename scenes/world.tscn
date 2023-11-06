@@ -4,11 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://0q861r3s86yf" path="res://scenes/player.tscn" id="2_3wiuu"]
 [ext_resource type="Environment" uid="uid://bew3uqwb6yegh" path="res://new-world-2.tres" id="2_vwfpf"]
 [ext_resource type="Texture2D" uid="uid://jh8ud5mofv5n" path="res://textures/tire_track_norm.png" id="4_1mwn7"]
-[ext_resource type="PackedScene" uid="uid://yh2nto2qra2u" path="res://models/ground.blend" id="4_e3hwj"]
-[ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="4_uwh34"]
 [ext_resource type="PackedScene" uid="uid://c7d1ifls68rb5" path="res://scenes/UIs/hud.tscn" id="5_hhwul"]
 [ext_resource type="Texture2D" uid="uid://d1cgyfvv3qoi5" path="res://textures/tire_track_ao.png" id="5_l6ard"]
 [ext_resource type="PackedScene" uid="uid://cwy8lvf7s4umh" path="res://scenes/swipe_detector.tscn" id="7_vnyeh"]
+[ext_resource type="Material" uid="uid://blc87lhukwegv" path="res://resources/desert_ground.tres" id="8_ottso"]
 [ext_resource type="AudioStream" uid="uid://cidfrfy5ittq8" path="res://sounds/music/music.mp3" id="10_2p6bk"]
 [ext_resource type="PackedScene" uid="uid://d0h772v1n8ins" path="res://scenes/components/daily_challenge_manager.tscn" id="11_xbitx"]
 [ext_resource type="Script" path="res://scripts/daily_challenges/daily_challenge.gd" id="12_1awdm"]
@@ -25,6 +24,9 @@
 [ext_resource type="Script" path="res://scripts/components/daily_challenges_popup_manager.gd" id="23_8torg"]
 [ext_resource type="PackedScene" uid="uid://cwo7wghvue1md" path="res://scenes/screens/task_complete_popup.tscn" id="24_2wdc2"]
 [ext_resource type="PackedScene" uid="uid://d23axbhbdncgo" path="res://scenes/screens/daily_challenge_complete_popup.tscn" id="25_00s6m"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_chxii"]
+size = Vector2(210, 35)
 
 [node name="World" type="Node"]
 script = ExtResource("1_snt1e")
@@ -74,12 +76,9 @@ distance_fade_length = 12.0
 
 [node name="SwipeDetector" parent="Player" instance=ExtResource("7_vnyeh")]
 
-[node name="GroundMesh" parent="." instance=ExtResource("4_uwh34")]
-transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 35, 0, -0.144253, 0)
-skeleton = NodePath("../Ground")
-
-[node name="Ground" parent="." instance=ExtResource("4_e3hwj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.840884, -29.7781)
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = ExtResource("8_ottso")
+mesh = SubResource("PlaneMesh_chxii")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.167568, -0.939525, 0.298686, 0.692661, 0.103391, 0.713815, -0.701528, 0.3265, 0.633447, -25.4428, 12.2864, 20.2081)

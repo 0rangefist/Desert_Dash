@@ -1,11 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp7chox360n0n"]
 
-[ext_resource type="PackedScene" uid="uid://clg1fuo16tvss" path="res://scenes/levels/ground.tscn" id="2_ve5oc"]
 [ext_resource type="PackedScene" uid="uid://dno520qom06w7" path="res://scenes/collectible_spawner.tscn" id="3_4oop7"]
 [ext_resource type="PackedScene" uid="uid://gwp4nxh4arvs" path="res://scenes/obstacle_spawner.tscn" id="3_6bash"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cdsvo"]
-size = Vector3(17.0717, 0.749653, 35)
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ea54"]
+size = Vector3(17.072, 0.1, 35)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hotax"]
+size = Vector2(210, 35)
 
 [node name="LevelSection" type="Node3D"]
 
@@ -14,10 +16,10 @@ collision_layer = 2
 collision_mask = 29
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_cdsvo")
+shape = SubResource("BoxShape3D_6ea54")
 
-[node name="MeshInstance3D" parent="Ground" instance=ExtResource("2_ve5oc")]
-transform = Transform3D(199.796, 0, -0.365548, 0, 0.999034, 0, 2.08885, 0, 34.9643, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_hotax")
 
 [node name="CollectibleSpawner" parent="." instance=ExtResource("3_4oop7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
@@ -37,10 +39,10 @@ min_coin_num = 4
 max_coin_num = 6
 
 [node name="ObstacleSpawner" parent="." instance=ExtResource("3_6bash")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 
 [node name="ObstacleSpawner2" parent="." instance=ExtResource("3_6bash")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 14)
 
 [node name="ObstacleSpawner3" parent="." instance=ExtResource("3_6bash")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -10)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://djl3ow4mhgnkj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cdsvo"]
+size = Vector3(17.072, 0.1, 35)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a0buf"]
+size = Vector2(210, 35)
+
+[node name="LevelSection" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 29
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_cdsvo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_a0buf")
