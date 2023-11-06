@@ -11,6 +11,7 @@ gradient = SubResource("Gradient_avxqa")
 width = 69
 
 [node name="TaskCompletePopup" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +73,7 @@ text = "Collect 500 coins"
 horizontal_alignment = 1
 
 [node name="PopupTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 4.0
 one_shot = true
 
 [connection signal="timeout" from="PopupTimer" to="." method="_on_popup_timer_timeout"]

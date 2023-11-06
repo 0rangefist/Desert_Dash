@@ -180,11 +180,13 @@ offset_bottom = 300.0
 
 [node name="DailyChalllengePopupManager" type="Control" parent="UI"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 script = ExtResource("23_8torg")
 
 [node name="TaskCompletePopup" parent="UI/DailyChalllengePopupManager" instance=ExtResource("24_2wdc2")]
-visible = false
 layout_mode = 1
 
 [connection signal="coin_collected" from="Player" to="DailyChallengeManager" method="_on_coin_collected"]
@@ -205,6 +207,7 @@ layout_mode = 1
 [connection signal="up_swipe" from="Player/SwipeDetector" to="Player" method="_on_swipe_detector_up_swipe"]
 [connection signal="timeout" from="ScoreTimer" to="Player" method="_on_score_timer_timeout"]
 [connection signal="task_completed" from="DailyChallengeManager" to="UI/HUD" method="_on_daily_challenge_task_completed"]
+[connection signal="task_completed" from="DailyChallengeManager" to="UI/DailyChalllengePopupManager" method="_on_daily_challenge_task_completed"]
 [connection signal="task_progressed" from="DailyChallengeManager" to="UI/HUD" method="_on_daily_challenge_task_progressed"]
 [connection signal="task_progressed" from="DailyChallengeManager" to="UI/DailyChallengesScreen" method="_on_daily_challenge_task_progressed"]
 [connection signal="daily_challenge_fetched" from="DailyChallengeManager/DailyChallenge" to="DailyChallengeManager" method="_on_daily_challenge_fetched"]

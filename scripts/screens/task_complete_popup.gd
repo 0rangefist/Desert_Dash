@@ -1,6 +1,5 @@
 extends Control
 
-
 func auto_popup():
 	# show the popup
 	show()
