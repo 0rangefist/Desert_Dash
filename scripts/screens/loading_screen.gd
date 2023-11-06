@@ -4,7 +4,6 @@ extends CanvasLayer
 @export_file("*.tscn") var scene_path: String
 
 var progress: Array[float] = []
-@onready var progress_bar: ProgressBar = $ProgressBar
 
 func _ready():
 	# Load the scene in the background
