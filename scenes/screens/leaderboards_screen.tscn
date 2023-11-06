@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3c58j1hxtwxy"]
+
+[ext_resource type="Script" path="res://scripts/screens/leaderboards_screen.gd" id="1_qtjyv"]
+[ext_resource type="Texture2D" uid="uid://cixe31abvdh3o" path="res://sprites/leaderboards.svg" id="3_mpq2y"]
+[ext_resource type="Texture2D" uid="uid://deyjpsra5jcjk" path="res://sprites/close_normal.svg" id="4_poes6"]
+[ext_resource type="Texture2D" uid="uid://dvva3drr54cdu" path="res://sprites/survival_leaderboard_icon.svg" id="5_doe7m"]
+[ext_resource type="Texture2D" uid="uid://dima1xjw2qymc" path="res://sprites/daily_challenge_leaderboard_icon.svg" id="5_t2gqh"]
+
+[sub_resource type="Gradient" id="Gradient_avxqa"]
+offsets = PackedFloat32Array(0, 0.718232, 1)
+colors = PackedColorArray(1, 0.760784, 0, 1, 1, 0.491149, 0, 1, 1, 0.247059, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n1oaq"]
+gradient = SubResource("Gradient_avxqa")
+
+[node name="LeaderboardsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtjyv")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -257.0
+offset_right = 231.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+pivot_offset = Vector2(128, 205)
+texture = SubResource("GradientTexture1D_n1oaq")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -120.5
+offset_right = 127.5
+offset_bottom = -83.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderMedium"
+text = "Leaderboards
+"
+
+[node name="HeaderIcon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -126.0
+offset_right = -29.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_mpq2y")
+
+[node name="CloseButton" type="TextureButton" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 173.0
+offset_top = -195.0
+offset_right = 248.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("4_poes6")
+
+[node name="Icon1" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -26.0
+offset_right = -93.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_doe7m")
+
+[node name="SurvivalLeaderboardButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -32.0
+offset_right = 110.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/icon_max_width = 28
+theme_override_font_sizes/font_size = 20
+text = "Survival"
+icon_alignment = 1
+
+[node name="Icon2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.5
+offset_top = 38.0
+offset_right = -84.5
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_t2gqh")
+
+[node name="ChallengeLeaderboardButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = 40.0
+offset_right = 110.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/icon_max_width = 28
+theme_override_font_sizes/font_size = 20
+text = "Daily Challenge"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="SurvivalLeaderboardButton" to="." method="_on_survival_leaderboard_button_pressed"]
+[connection signal="pressed" from="ChallengeLeaderboardButton" to="." method="_on_challenge_leaderboard_button_pressed"]

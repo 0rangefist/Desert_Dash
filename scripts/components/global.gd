@@ -1,8 +1,10 @@
 extends Node
 
-var score = 0
+var score = 0 # score in seconds
 var coin_count = 0
 var GPGS
+const CHALLENGE_LEADERBOARD = "CgkIyv2UyaEfEAIQAg"
+const SURVIVAL_LEADERBOARD = "CgkIyv2UyaEfEAIQAQ"
 
 func _ready():
 	if Engine.has_singleton("GodotPlayGamesServices"):

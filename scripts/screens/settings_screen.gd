@@ -7,13 +7,26 @@ func _ready():
 		GPGS = Engine.get_singleton("GodotPlayGamesServices")
 		var show_popups := true
 		var request_email := false
-		var request_profile := true
+		var request_profile := false
 		var request_token := ""
 		GPGS.init(show_popups, request_email, request_profile, request_token)
 		GPGS.connect("_on_sign_in_success", _on_sign_in_success)
 		GPGS.connect("_on_sign_in_failed", _on_sign_in_failed)
 		GPGS.connect("_on_sign_out_success", _on_sign_out_success)
 		GPGS.connect("_on_sign_out_failed", _on_sign_out_failed)
+		
+		# initialise settings popup with correct sign in state from GPGS
+		if GPGS:
+			if GPGS.isSignedIn():
+				# set the button state to pressed (representing signed in)
+				$PlayGamesButton.button_pressed = true
+				# diaplay option to user to sign out
+				$PlayGamesButton.text = "DISCONNECT"
+			else: # not signed in
+				# set the button state to not pressed (representing signed out)
+				$PlayGamesButton.button_pressed = false
+				# display option to the user to sign in
+				$PlayGamesButton.text = "CONNECT"
 		
 		
 func _on_sign_in_success(user_info):

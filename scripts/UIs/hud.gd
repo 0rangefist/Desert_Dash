@@ -48,11 +48,3 @@ func _on_hover_progress_timer_timeout():
 # update the score time every second
 func _on_player_score_one_second_elapsed(total_score_time):
 	$ScoreTime.text = Global.format_time(total_score_time)
-
-func _on_daily_challenge_task_updated(tasks):
-	print("DAILY CHALLENGE TASKS")
-	for task in tasks:
-		print(task)
-
-func _on_daily_challenge_task_completed(task_id):
-	print("You Completed a Task: " + task_id)

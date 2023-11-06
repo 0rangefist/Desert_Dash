@@ -21,9 +21,8 @@ func _on_daily_challengse_button_pressed():
 	$InputBlocker.show()
 
 func _on_leader_boards_button_pressed():
-	# show leaderboards
-	if Global.GPGS:
-		Global.GPGS.showAllLeaderBoards()
+	# show leaderboards popup screen
+	$LeaderboardsScreen.show()
 
 func _on_popup_screen_hidden():
 	# when a popup is cosed (hidden)
