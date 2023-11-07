@@ -1,14 +1,19 @@
 extends Node3D
 
+@export_range(0.0, 1.0, 0.1) var coin_probability: float  = 0.2
+@export_range(0.0, 1.0, 0.1) var magnet_probability: float  = 0.1
+@export_range(0.0, 1.0, 0.1) var shield_probability: float  = 0.1
+@export_range(0.0, 1.0, 0.1) var hover_probability: float  = 0.1
+
 #@export_range(0.0, 1.0, 0.1) var coin_probability: float  = 0.6
 #@export_range(0.0, 1.0, 0.1) var magnet_probability: float  = 0.2
 #@export_range(0.0, 1.0, 0.1) var shield_probability: float  = 0.1
 #@export_range(0.0, 1.0, 0.1) var hover_probability: float  = 0.1
 
-@export_range(0.0, 1.0, 0.1) var coin_probability: float  = 0
-@export_range(0.0, 1.0, 0.1) var magnet_probability: float  = 0
-@export_range(0.0, 1.0, 0.1) var shield_probability: float  = 0.5
-@export_range(0.0, 1.0, 0.1) var hover_probability: float  = 0.5
+#@export_range(0.0, 1.0, 0.1) var coin_probability: float  = 0
+#@export_range(0.0, 1.0, 0.1) var magnet_probability: float  = 0
+#@export_range(0.0, 1.0, 0.1) var shield_probability: float  = 0.5
+#@export_range(0.0, 1.0, 0.1) var hover_probability: float  = 0.5
 # 0.1 for no_spawn probability
 
 # we could spawn 3, 4 ... or 10 coins

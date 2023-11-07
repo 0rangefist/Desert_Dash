@@ -27,8 +27,12 @@ func _ready():
 	nearest_position -= UNIT_LENGTH
 	# randomly instantiate the first visible set of units
 	for cycle in range(MAX_VISIBLE_UNITS):
-		#var unit = get_random_unit_instance(level_loader.level_units)
-		var unit = get_random_unit_instance(level_units)
+		var unit
+		# make the loaded unit one without any spawning elements (unit_0)
+		if cycle == 0:
+			unit = preload("res://scenes/levels/desert/desert_unit_0.tscn").instantiate()
+		else: # for subsequent units, get a random unit with spawning elements
+			unit = get_random_unit_instance(level_units)
 		# add the unit to the scene
 		add_child(unit)
 		# position the unit at the furthest position
@@ -76,7 +80,7 @@ func populate_level():
 		farthest_position -= UNIT_LENGTH
 	
 func get_random_unit_instance(unit_list):
-	# Randomly select an instantiate unit scene from list
+	# Randomly select and instantiate unit scene from list
 	return unit_list[randi() % unit_list.size()].instantiate()
 
 

@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0477535, 0)
 shape = SubResource("CylinderShape3D_c8nma")
 
 [node name="Cactus3" type="StaticBody3D" parent="." groups=["cacti"]]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 2.33357, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 2, 0)
 collision_layer = 4
 collision_mask = 7
 

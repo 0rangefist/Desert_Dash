@@ -72,9 +72,9 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		$DustTrail.emitting = false
-	else:
-		$DustTrail.emitting = false
+		#$DustTrail.emitting = false
+	#else:
+		#$DustTrail.emitting = false
 	
 	# set player in perpetual motion
 	#position.z -= 0.1
